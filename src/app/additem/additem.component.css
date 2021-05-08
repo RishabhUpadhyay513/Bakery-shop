@@ -1,0 +1,11 @@
+.additem-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: #eee;
+  padding: 50px;
+}
+.additem-section form {
+  width: 50%;
+}

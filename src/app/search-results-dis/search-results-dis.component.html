@@ -1,0 +1,44 @@
+<div class="sort-by-price">
+  <form class="row g-3">
+    <div class="col-auto">
+      <label for="inputPassword2" class="visually-hidden">min-Price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="minPrice"
+        name="minPrice"
+        placeholder="Min-Price"
+        [(ngModel)]="minPrice"
+      />
+    </div>
+    <div class="col-auto">
+      <label for="inputPassword2" class="visually-hidden">Max-price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="maxPrice"
+        name="maxPrice"
+        placeholder="Max-price"
+        [(ngModel)]="maxPrice"
+      />
+    </div>
+    <div class="col-auto">
+      <button
+        type="submit"
+        (click)="sortByPrice()"
+        class="btn btn-primary mb-3"
+      >
+        Sort
+      </button>
+    </div>
+  </form>
+</div>
+<div class="cake-list">
+  <app-card *ngFor="let cake of cakesList" [cake]="cake"></app-card>
+  <div *ngIf="cakesList.length === 0" class="no-query">
+    <p>
+      <img src="assets/404.png" alt="no-found" /><br />
+      No Cake found!. For your Search Query!
+    </p>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <form class="d-flex">
+      <input
+        name="search"
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        [(ngModel)]="searchQuery"
+        (change)="search()"
+      />
+      <div class="filter-container">
+        <button type="button" class="btn btn-warning" (click)="filter('lth')">
+          <span class="fas fa-sort-amount-down-alt"></span> Low to High
+        </button>
+        <button type="button" class="btn btn-warning" (click)="filter('htl')">
+          <i class="fas fa-sort-amount-up-alt"></i> High to Low
+        </button>
+        <button type="button" class="btn btn-warning" (click)="filter('res')">
+          <i class="fas fa-undo"></i>Reset Filter
+        </button>
+      </div>
+    </form>
+  </div>
+</nav>

@@ -1,0 +1,113 @@
+<div class="cake-details-Container">
+  <ul class="cart-products-list flex" *ngIf="!dataloaded">
+    <p>
+      <img class="loading" src="https://i.stack.imgur.com/hzk6C.gif" alt="" />
+      Cake Details...
+    </p>
+  </ul>
+  <div class="cake-data small-screen" *ngIf="dataloaded">
+    <div class="cake-description">
+      <h1>{{ cake.name }}</h1>
+
+      <div class="userReview">
+        <div class="rate">
+          <span
+            class="fa fa-star {{ cake.ratings >= 1 ? 'checked' : '' }}"
+          ></span>
+          <span
+            class="fa fa-star {{ cake.ratings >= 2 ? 'checked' : '' }}"
+          ></span>
+          <span
+            class="fa fa-star {{ cake.ratings >= 3 ? 'checked' : '' }}"
+          ></span>
+          <span
+            class="fa fa-star {{ cake.ratings >= 4 ? 'checked' : '' }}"
+          ></span>
+          <span
+            class="fa fa-star {{ cake.ratings >= 5 ? 'checked' : '' }}"
+          ></span>
+          <p>{{ cake.ratings }}</p>
+        </div>
+        <div class="noOfReviews">
+          <p>{{ cake.reviews }} Reviews</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="dataloaded">
+    <div class="cake-img-ingredient">
+      <div class="cake-img">
+        <span *ngIf="!cake.eggless"
+          ><img src="assets/nonVeg.png" alt=""
+        /></span>
+        <span *ngIf="cake.eggless"><img src="assets/veg.png" alt="" /></span>
+        <img [src]="cake.image" alt="" />
+      </div>
+      <div class="ingredients">
+        <p class="heading">Ingredients:</p>
+        <ul class="infredient-list">
+          <li *ngFor="let ing of cake.ingredients">
+            <ul>
+              <li>{{ ing }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="cake-data">
+      <div class="cake-description">
+        <h1 class="screen-hide">{{ cake.name }}</h1>
+
+        <div class="userReview screen-hide">
+          <div class="rate">
+            <span
+              class="fa fa-star {{ cake.ratings >= 1 ? 'checked' : '' }}"
+            ></span>
+            <span
+              class="fa fa-star {{ cake.ratings >= 2 ? 'checked' : '' }}"
+            ></span>
+            <span
+              class="fa fa-star {{ cake.ratings >= 3 ? 'checked' : '' }}"
+            ></span>
+            <span
+              class="fa fa-star {{ cake.ratings >= 4 ? 'checked' : '' }}"
+            ></span>
+            <span
+              class="fa fa-star {{ cake.ratings >= 5 ? 'checked' : '' }}"
+            ></span>
+            <p>{{ cake.ratings }}</p>
+          </div>
+          <div class="noOfReviews">
+            <p>{{ cake.reviews }} Reviews</p>
+          </div>
+        </div>
+
+        <div class="cake-description-text">
+          <p>{{ cake.description }}</p>
+          <p class="price highlight">
+            <span class="heading">Current Price :</span>
+            ₹ {{ cake.price }}
+          </p>
+          <p>{{ cake.buyerAvgReview }}</p>
+          <p class="weight">
+            <span class="heading">Weight :</span>{{ cake.weight }} Kg
+          </p>
+          <p class="flavour highlight">
+            <span class="heading">Flavour :</span> {{ cake.flavour }}
+          </p>
+          <p class="type"><span>Type :</span> {{ cake.type }}</p>
+        </div>
+      </div>
+
+      <div class="cake-buttons">
+        <button class="btn btn-custom cart" (click)="addToCart()">
+          Add To Cart
+        </button>
+        <button class="btn btn-custom wishlist">
+          <span class="fas fa-heart"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

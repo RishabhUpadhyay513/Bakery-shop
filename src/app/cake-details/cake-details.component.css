@@ -1,0 +1,277 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  margin: 0 auto; /* Center website */
+  max-width: 800px; /* Max width */
+  padding: 20px;
+}
+
+.heading {
+  font-size: 25px;
+  margin-right: 25px;
+}
+
+.fa {
+  font-size: 25px;
+}
+
+.checked {
+  color: orange;
+}
+
+/* Three column layout */
+.side {
+  float: left;
+  width: 15%;
+  margin-top: 10px;
+}
+
+.middle {
+  float: left;
+  width: 70%;
+  margin-top: 10px;
+}
+
+/* Place text to the right */
+.right {
+  text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-5 {
+  width: 60%;
+  height: 18px;
+  background-color: #4caf50;
+}
+.bar-4 {
+  width: 30%;
+  height: 18px;
+  background-color: #2196f3;
+}
+.bar-3 {
+  width: 10%;
+  height: 18px;
+  background-color: #00bcd4;
+}
+.bar-2 {
+  width: 4%;
+  height: 18px;
+  background-color: #ff9800;
+}
+.bar-1 {
+  width: 15%;
+  height: 18px;
+  background-color: #f44336;
+}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+  .side,
+  .middle {
+    width: 100%;
+  }
+  /* Hide the right column on small screens */
+  .right {
+    display: none;
+  }
+}
+
+p {
+  text-align: center;
+}
+
+.cake-description p {
+  margin: 15px;
+  color: #666;
+}
+.cake-description p.highlight {
+  color: rgb(150, 57, 85);
+  /* font-weight: bolder; */
+  font-size: 30px;
+
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+.heading {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  font-size: 25px;
+  color: #444;
+  margin: 0;
+  /* box-shadow: 2px 2px 5px #000; */
+}
+
+.cake-details-Container {
+  margin: 50px 50px 0;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.37);
+  /* color: #fff; */
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cake-details-Container > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.cake-details-Container .cake-img-ingredient {
+  max-width: 500px;
+}
+.cake-details-Container .cake-img img {
+  border-radius: 5px;
+}
+.cake-details-Container .cake-img span {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 90%;
+  top: 5%;
+}
+
+.cake-details-Container .cake-img {
+  position: relative;
+  width: 100%;
+  max-height: 80%;
+}
+.cake-details-Container .ingredients p {
+  padding: 20px;
+}
+.cake-details-Container .ingredients .infredient-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  /* flex-direction: column; */
+  width: 100%;
+  height: 100%;
+}
+li {
+  /* list-style: none; */
+  margin: 0;
+}
+.cake-details-Container .ingredients .infredient-list > li {
+  padding: 15px 5px;
+  /* margin: 0 5px 0 0; */
+  text-align: center;
+  min-width: 160px;
+
+  height: 100px;
+  box-sizing: border-box;
+}
+
+.cake-details-Container .ingredients {
+  display: flex;
+  width: 100%;
+  padding: 10px 15px;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 30px 0;
+  border-radius: 5px;
+  background: #eee;
+}
+.cake-details-Container .cake-description .userReview .rate {
+  display: flex;
+  justify-content: center;
+}
+.cake-details-Container .cake-description .userReview .rate p {
+  margin: 0 20px;
+  font-weight: 500;
+  font-size: 20px;
+}
+.cake-details-Container .cake-description {
+  display: flex;
+  font-family: "Original Surfer", cursive;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80%;
+}
+.weight {
+  font-size: 20px;
+}
+.type {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column;
+  font-size: 35px;
+  font-weight: 500;
+  align-items: center;
+  color: #444;
+}
+.type span {
+  font-size: 30px;
+  font-weight: bolder;
+  color: #610163;
+}
+.cake-buttons {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.cake-buttons .btn.wishlist {
+  padding: 10px 15px;
+}
+.cake-buttons .btn.cart {
+  padding: 10px 25px;
+}
+.cart-products-list img {
+  width: 200px;
+}
+.cart-products-list p {
+  font-size: 20px;
+  font-weight: 800;
+}
+.cake-data.small-screen {
+  visibility: hidden;
+  position: fixed;
+}
+
+@media screen and (max-width: 840px) {
+  .cake-details-Container > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cake-data.small-screen {
+    visibility: visible;
+    position: static;
+  }
+  .screen-hide {
+    display: none;
+  }
+  .cake-details-Container {
+    margin: 20px 20px 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .cake-details-Container {
+    margin: 20px 2px 0;
+  }
+}

@@ -1,0 +1,10 @@
+.signup-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  flex-direction: column;
+}
+.signup-section form {
+  width: 70%;
+}

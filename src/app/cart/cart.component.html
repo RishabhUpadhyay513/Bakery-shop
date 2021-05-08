@@ -1,0 +1,93 @@
+<div class="cart flex">
+  <header class="cart-header flex">
+    <h1>Your Cart</h1>
+    <div class="cart-right">
+      <button
+        class="btn btn-primary click-effect"
+        routerLink="/checkout"
+        *ngIf="!loading && totalPrice"
+      >
+        Checkout
+      </button>
+    </div>
+  </header>
+
+  <main class="cart-main flex">
+    <div class="cart-products flex">
+      <ul class="cart-products-list flex" *ngIf="loading">
+        <p *ngIf="loading !== 'upldating'">
+          <img
+            class="loading"
+            src="https://i.stack.imgur.com/hzk6C.gif"
+            alt=""
+          />
+          Your Cart Items
+        </p>
+        <p *ngIf="loading === 'upldating'">
+          <img
+            class="loading"
+            src="https://xtremexmartialarts.com/wp-content/uploads/2020/07/anim-circ-preloader.gif"
+            alt=""
+          />
+          Your Cart Items
+        </p>
+      </ul>
+      <ul class="cart-products-list flex" *ngIf="!loading && !totalPrice">
+        <p class="cart-empty">
+          <img
+            class="loading"
+            src="https://www.pngfind.com/pngs/b/272-2727925_cart-png.png"
+            alt=""
+          />
+          <span>
+            Your Cart is Empty.
+            <a routerLink="/">Click here</a> to see Cakes</span
+          >
+        </p>
+      </ul>
+      <ul class="cart-products-list flex" *ngIf="!loading && totalPrice">
+        <li class="products-header">
+          <p>Products</p>
+          <p>Price</p>
+          <p>Qty</p>
+          <p>Subtotal</p>
+        </li>
+        <li class="products" *ngFor="let item of cartItems">
+          <p class="item-title">
+            <img [src]="item.image" class="item-img" alt="" />
+            <span
+              ><p>{{ item.name }}</p>
+              <p class="small-text">Weight: {{ item.weight }} kg</p>
+            </span>
+          </p>
+          <p>₹ {{ item.price }}</p>
+          <p>
+            <input
+              type="number"
+              [(ngModel)]="item.quantity"
+              (change)="qtyValidation($event)"
+              disabled
+            /><i
+              (click)="remove(item.cakeid)"
+              class="fas fa-trash click-effect"
+            ></i>
+          </p>
+          <p>₹ {{ item.quantity * item.price }}</p>
+        </li>
+        <li class="products-header"></li>
+        <li class="products-header total">
+          <p>Delivery Charge: ₹{{ deliveryCharge }}</p>
+          <p></p>
+          <p>Total :</p>
+          <p class="total">
+            <span class="delivery-charge"> ₹ {{ totalPrice }}</span>
+            <span class="delivery-charge"> + ₹ {{ deliveryCharge }}</span>
+            <span class="total-price">
+              ₹ {{ totalPrice ? totalPrice + deliveryCharge : totalPrice }}
+            </span>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </main>
+</div>

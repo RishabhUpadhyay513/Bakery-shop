@@ -1,0 +1,117 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+.admin {
+  width: 100%;
+  flex-direction: column;
+}
+.admin .admin-header {
+  width: 90%;
+  justify-content: space-between;
+  background: #000;
+  color: aliceblue;
+  padding: 20px;
+  border: 0.5px solid #000;
+  border-radius: 10px;
+}
+.admin .admin-products {
+  width: 100%;
+  background: rgba(240, 248, 255, 0.568);
+  border-radius: 10px;
+}
+.admin .admin-main {
+  width: 95%;
+}
+.admin main {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.admin .admin-products-list {
+  flex-direction: column;
+  width: 100%;
+  padding-right: 25px;
+}
+.admin .admin-products-list input {
+  max-width: 50px;
+}
+.admin .admin-products-list .item-img {
+  width: 70%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 2px 5px 10px #000;
+  margin: 10px 20px;
+}
+.admin .products-header {
+  border-bottom: 1px solid #000;
+}
+.admin li {
+  display: grid;
+  width: 100%;
+
+  grid-template-columns: 3fr repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+}
+.total span {
+  display: block;
+  text-align: end;
+  /* margin: 0 55% 0 0; */
+}
+.total span:last-of-type {
+  border-top: 1px solid #000;
+}
+.products-header.total {
+  grid-template-columns: 2fr repeat(2, 1fr);
+}
+
+.admin .item-title {
+  display: grid;
+  grid-template-columns: 30% auto;
+  align-items: center;
+}
+p.small-text {
+  font-size: 15px;
+  margin: 0;
+}
+.loading {
+  width: 200px;
+}
+
+.admin .admin-empty .loading {
+  width: 30%;
+}
+.admin .admin-empty {
+  background: #eee;
+  border-radius: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  height: 500px;
+  color: rgba(151, 148, 148, 0.801);
+}
+.admin .admin-empty span {
+  font-size: 17px;
+}
+app-adminsearch {
+  width: 100%;
+}
+@media screen and (max-width: 840px) {
+  * {
+    font-size: 2vw;
+  }
+  .cart .cart-products-list input {
+    width: 30px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+}

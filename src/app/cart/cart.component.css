@@ -1,0 +1,114 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+.cart {
+  width: 100%;
+  flex-direction: column;
+}
+.cart .cart-header {
+  width: 90%;
+  justify-content: space-between;
+  background: #000;
+  color: aliceblue;
+  padding: 20px;
+  border: 0.5px solid #000;
+  border-radius: 10px;
+}
+.cart .cart-products {
+  width: 100%;
+  background: rgba(240, 248, 255, 0.568);
+  border-radius: 10px;
+}
+.cart .cart-main {
+  width: 95%;
+}
+.cart main {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.cart .cart-products-list {
+  flex-direction: column;
+  width: 100%;
+  padding-right: 25px;
+}
+.cart .cart-products-list input {
+  max-width: 50px;
+}
+.cart .cart-products-list .item-img {
+  width: 70%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 2px 5px 10px #000;
+  margin: 10px 20px;
+}
+.cart .products-header {
+  border-bottom: 1px solid #000;
+}
+.cart li {
+  display: grid;
+  width: 100%;
+
+  grid-template-columns: 3fr repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
+}
+.total span {
+  display: block;
+  text-align: end;
+  /* margin: 0 55% 0 0; */
+}
+.total span:last-of-type {
+  border-top: 1px solid #000;
+}
+.products-header.total {
+  grid-template-columns: 2fr repeat(2, 1fr);
+}
+
+.cart .item-title {
+  display: grid;
+  grid-template-columns: 30% auto;
+}
+p.small-text {
+  font-size: 15px;
+  margin: 0;
+}
+.loading {
+  width: 200px;
+}
+
+.cart .cart-empty .loading {
+  width: 30%;
+}
+.cart .cart-empty {
+  background: #eee;
+  border-radius: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  height: 500px;
+  color: rgba(151, 148, 148, 0.801);
+}
+.cart .cart-empty span {
+  font-size: 17px;
+}
+
+@media screen and (max-width: 840px) {
+  * {
+    font-size: 2vw;
+  }
+  .cart .cart-products-list input {
+    width: 30px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+}

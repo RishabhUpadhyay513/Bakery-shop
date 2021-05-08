@@ -1,0 +1,20 @@
+<div class="login-section">
+  <h1>Login Form</h1>
+  <form (submit)="upload($event)">
+    <div class="form-group">
+      <label for="image">Image</label>
+      <div class="preview-img">
+        <img src="" alt="" />
+      </div>
+      <input
+        type="file"
+        name="image"
+        (change)="imgPreview($event)"
+        class="form-control"
+        id="image"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+  </form>
+</div>

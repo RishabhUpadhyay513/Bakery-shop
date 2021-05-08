@@ -1,0 +1,23 @@
+.signup-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.521);
+  padding: 50px;
+  border: 0.5px solid black;
+}
+.signup-section form {
+  width: 70%;
+}
+.signup-section form input {
+  margin: 20px 0;
+}
+
+@media screen and (max-width: 800px) {
+  .signup-section {
+    margin: 20px 2px;
+    padding: 2vw;
+  }
+}

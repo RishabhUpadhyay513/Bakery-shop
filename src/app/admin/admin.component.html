@@ -1,0 +1,51 @@
+<div class="admin flex">
+  <header class="admin-header flex">
+    <h1>Cakes</h1>
+    <div class="admin-right"></div>
+  </header>
+  <main class="admin-main flex">
+    <div class="admin-products flex">
+      <ul class="admin-products-list flex" *ngIf="loading">
+        <p *ngIf="loading !== 'upldating'">
+          <img
+            class="loading"
+            src="https://i.stack.imgur.com/hzk6C.gif"
+            alt=""
+          />
+          Cakes...
+        </p>
+      </ul>
+      <ul class="admin-products-list flex" *ngIf="!loading">
+        <!-- <app-adminsearch [cakearr]="cs.cakeList"></app-adminsearch> -->
+        <li class="products-header">
+          <p>Products</p>
+          <p>Price</p>
+          <p>Action</p>
+        </li>
+        <li class="products" *ngFor="let item of cs.cakeList">
+          <p class="item-title">
+            <img [src]="item.image" class="item-img" alt="" />
+            <span
+              ><p>{{ item.name }}</p>
+            </span>
+          </p>
+          <p>₹ {{ item.price }}</p>
+          <p>
+            <button
+              class="btn"
+              (click)="edit(item.cakeid)"
+              routerLink="/admin/editcake/{{ item.cakeid }}"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+          </p>
+        </li>
+        <li class="products-header"></li>
+      </ul>
+    </div>
+  </main>
+</div>
+
+<!-- <div class="edit">
+  <app-editform></app-editform>
+</div> -->

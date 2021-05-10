@@ -54,9 +54,16 @@
         </li>
         <li class="products" *ngFor="let item of cartItems">
           <p class="item-title">
-            <img [src]="item.image" class="item-img" alt="" />
+            <img
+              [src]="item.image"
+              class="item-img click-effect"
+              alt=""
+              routerLink="/cakes/{{ item.cakeid }}"
+            />
             <span
-              ><p>{{ item.name }}</p>
+              ><p class="click-effect" routerLink="/cakes/{{ item.cakeid }}">
+                {{ item.name }}
+              </p>
               <p class="small-text">Weight: {{ item.weight }} kg</p>
             </span>
           </p>
@@ -76,12 +83,20 @@
         </li>
         <li class="products-header"></li>
         <li class="products-header total">
-          <p>Delivery Charge: ₹{{ deliveryCharge }}</p>
+          <p>
+            <i class="fas fa-truck"></i>
+            {{
+              deliveryCharge
+                ? " Delivery Charge: ₹" + deliveryCharge
+                : "Free Delivery"
+            }}
+          </p>
           <p></p>
           <p>Total :</p>
           <p class="total">
             <span class="delivery-charge"> ₹ {{ totalPrice }}</span>
             <span class="delivery-charge"> + ₹ {{ deliveryCharge }}</span>
+
             <span class="total-price">
               ₹ {{ totalPrice ? totalPrice + deliveryCharge : totalPrice }}
             </span>

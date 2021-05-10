@@ -3,6 +3,7 @@
     <h1>Cakes</h1>
     <div class="admin-right"></div>
   </header>
+  <app-search [cakeArr]="admin.cakeList" [adminUser]="true"></app-search>
   <main class="admin-main flex">
     <div class="admin-products flex">
       <ul class="admin-products-list flex" *ngIf="loading">
@@ -22,7 +23,7 @@
           <p>Price</p>
           <p>Action</p>
         </li>
-        <li class="products" *ngFor="let item of cs.cakeList">
+        <li class="products" *ngFor="let item of admin.cakeSearch">
           <p class="item-title">
             <img [src]="item.image" class="item-img" alt="" />
             <span
@@ -31,11 +32,7 @@
           </p>
           <p>₹ {{ item.price }}</p>
           <p>
-            <button
-              class="btn"
-              (click)="edit(item.cakeid)"
-              routerLink="/admin/editcake/{{ item.cakeid }}"
-            >
+            <button class="btn" routerLink="/admin/editcake/{{ item.cakeid }}">
               <i class="fas fa-edit"></i>
             </button>
           </p>
@@ -44,6 +41,11 @@
       </ul>
     </div>
   </main>
+  <app-pagination
+    *ngIf="!loading"
+    [cakesArr]="admin.cakeList"
+    [adminUser]="true"
+  ></app-pagination>
 </div>
 
 <!-- <div class="edit">

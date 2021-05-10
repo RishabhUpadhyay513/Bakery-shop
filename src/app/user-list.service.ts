@@ -16,6 +16,9 @@ export class UserListService {
   apiUrl: any = 'https://apifromashu.herokuapp.com/api/';
 
   constructor(private http: HttpClient, private toastr: ToastrService) {
+    this.getCakeList();
+  }
+  getCakeList() {
     this.http.get(this.apiUrl + 'allcakes').subscribe(
       (res: any) => {
         if (res.data) this.cakeList = res.data;

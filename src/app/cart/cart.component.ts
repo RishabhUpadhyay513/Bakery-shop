@@ -10,7 +10,8 @@ import { UserListService } from '../user-list.service';
 })
 export class CartComponent implements OnInit {
   qty: any = 1;
-  deliveryCharge: any = this.cs.deliveryCharge;
+
+  deliveryCharge: any = 0;
   cartItems: any = [];
   loading: any = true;
   totalPrice: any = 0;
@@ -43,6 +44,9 @@ export class CartComponent implements OnInit {
       (acc: any, item: any) => item.price * item.quantity + acc,
       0
     );
+
+    if (this.totalPrice > 500) this.deliveryCharge = 0;
+    else this.deliveryCharge = this.cs.deliveryCharge;
   }
 
   qtyValidation(e: any) {

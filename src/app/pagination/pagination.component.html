@@ -11,13 +11,67 @@
     </li>
 
     <li
-      class="page-item click-effect"
+      class="page-item {{ i + 1 === currentp ? 'active' : '' }}"
       *ngFor="let page of paginationArr; index as i"
-      (click)="showPage(page)"
     >
-      <a class="page-link">{{ page }}</a>
+      <span
+        (click)="showPage(page)"
+        class="click-effect"
+        *ngIf="i < 3 && currentp <= 3"
+      >
+        <a class="page-link">{{ page }}</a>
+      </span>
+      <span
+        (click)="showPage(page)"
+        class="click-effect"
+        *ngIf="i < 2 && currentp > 3"
+      >
+        <a class="page-link">{{ page }}</a>
+      </span>
     </li>
-
+    <li class="page-item disabled">
+      <span *ngIf="paginationArr.length >= 3">
+        <a class="page-link">...</a>
+      </span>
+    </li>
+    <li
+      class="page-item {{ i + 1 === currentp ? 'active' : '' }}"
+      *ngFor="let page of paginationArr; index as i"
+    >
+      <span
+        (click)="showPage(page)"
+        *ngIf="i > noOfpages - 3 && currentp === noOfpages"
+        class="click-effect"
+      >
+        <a class="page-link">{{ page }}</a>
+      </span>
+    </li>
+    <li class="page-item active">
+      <span
+        (click)="showPage(currentp)"
+        *ngIf="currentp > 3 && currentp !== noOfpages"
+        class="click-effect"
+      >
+        <a class="page-link">{{ currentp }}</a>
+      </span>
+    </li>
+    <li
+      class="page-item disabled"
+      *ngIf="
+        paginationArr.length >= 3 && currentp > 3 && currentp < noOfpages - 1
+      "
+    >
+      <span>
+        <a class="page-link">...</a>
+      </span>
+    </li>
+    <span
+      class="click-effect"
+      (click)="showPage(noOfpages)"
+      *ngIf="currentp !== noOfpages"
+    >
+      <a class="page-link">{{ noOfpages }}</a>
+    </span>
     <li
       class="page-item {{
         currentp === paginationArr.length ? 'disabled' : ''

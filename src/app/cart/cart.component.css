@@ -101,6 +101,12 @@ p.small-text {
   font-size: 17px;
 }
 
+img.click-effect:active,
+p.click-effect:active {
+  transform: scale(1);
+  box-shadow: 5px 10px 20px #faf !important;
+  color: coral;
+}
 @media screen and (max-width: 840px) {
   * {
     font-size: 2vw;

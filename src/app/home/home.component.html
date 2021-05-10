@@ -2,7 +2,7 @@
   <app-cake-slider></app-cake-slider>
 </div>
 
-<app-search></app-search>
+<app-search [cakeArr]="cs.cakeList"></app-search>
 
 <!-- <div class="cake-list" *ngIf="!cs.cakeSearch.length">
   <app-card *ngFor="let cake of cakeList" [cake]="cake"></app-card>
@@ -17,9 +17,9 @@
       No Cake found.(404)!!
     </p>
   </div>
-  <!-- <app-pagination
+  <app-pagination
     [cakesArr]="cs.cakeList"
     class="w-100 m-2x"
     *ngIf="cs.cakeList.length"
-  ></app-pagination> -->
+  ></app-pagination>
 </div>

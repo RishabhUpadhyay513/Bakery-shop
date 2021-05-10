@@ -9,7 +9,6 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ForgotComponent } from './forgot/forgot.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -18,9 +17,8 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { AdditemComponent } from './additem/additem.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { TestDirective } from './test.directive';
+
 import { CakeSliderComponent } from './cake-slider/cake-slider.component';
-import { CakeHighlightDirective } from './cake-highlight.directive';
 import { SearchComponent } from './search/search.component';
 import { SearchCakeDirective } from './search-cake.directive';
 import { HomeComponent } from './home/home.component';
@@ -34,12 +32,11 @@ import { AuthinterceptorService } from './authinterceptor.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
 import { EditformComponent } from './editform/editform.component';
-import { AdminsearchComponent } from './adminsearch/adminsearch.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ForgotComponent,
+
     NavbarComponent,
     LoginComponent,
     SignupComponent,
@@ -48,9 +45,9 @@ import { AdminsearchComponent } from './adminsearch/adminsearch.component';
     AdditemComponent,
     AddUserComponent,
     UserListComponent,
-    TestDirective,
+
     CakeSliderComponent,
-    CakeHighlightDirective,
+
     SearchComponent,
     SearchCakeDirective,
     HomeComponent,
@@ -63,7 +60,6 @@ import { AdminsearchComponent } from './adminsearch/adminsearch.component';
     CheckoutComponent,
     AdminComponent,
     EditformComponent,
-    AdminsearchComponent,
   ],
   imports: [
     BrowserModule,

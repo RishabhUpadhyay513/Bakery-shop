@@ -45,10 +45,10 @@
         </li>
 
         <div class="order-details" *ngFor="let item of cartItems">
-          <li class="products">
+          <li class="products" (click)="showOrderDetails(item.orderid)">
             <p class="item-title">
-              <span (click)="showOrderDetails(item.orderid)"
-                ><p class="click-effect">
+              <span
+                ><p>
                   {{ item.name }}
                   <span class="small-text">({{ item.orderdate }})</span>
                 </p>
@@ -80,8 +80,13 @@
             </li>
             <li class="products" *ngFor="let cake of item.cakes">
               <p class="cakename">
-                <img [src]="cake.image" alt="" />
-                <span
+                <img
+                  class="click-effect"
+                  [src]="cake.image"
+                  alt=""
+                  routerLink="/cakes/{{ cake.cakeid }}"
+                />
+                <span class="click-effect" routerLink="/cakes/{{ cake.cakeid }}"
                   >{{ cake.name }}
                   <p class="small-text">
                     Weight:

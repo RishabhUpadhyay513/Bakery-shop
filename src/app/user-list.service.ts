@@ -58,4 +58,39 @@ export class UserListService {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
+
+  validateCakeDetails(cake: any) {
+    if (!cake.name || !cake.name.trim()) {
+      this.toastr.warning('Cake name should not be empty');
+      return false;
+    }
+    if (!+cake.price || cake.price < 1) {
+      this.toastr.warning('Price should be in rupees & greater than ₹1');
+      return false;
+    }
+    if (!+cake.weight) {
+      this.toastr.warning(
+        'Weight should be in Kg & greater than or equal to 1'
+      );
+      return false;
+    }
+    if (!cake.type || !cake.type.trim()) {
+      this.toastr.warning('Type field should not be empty');
+      return false;
+    }
+    if (!cake.flavour || !cake.flavour.trim()) {
+      this.toastr.warning('Flavour field should not be empty');
+      return false;
+    }
+    if (
+      !this.validateEmail(cake.owner.email) ||
+      !cake.owner.name ||
+      !cake.owner.name.trim()
+    ) {
+      this.toastr.warning('Owner Email/name field should be correct');
+      return false;
+    }
+
+    return true;
+  }
 }

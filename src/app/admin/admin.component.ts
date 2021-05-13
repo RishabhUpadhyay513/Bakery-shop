@@ -10,6 +10,7 @@ import { AdminService } from '../admin.service';
 })
 export class AdminComponent implements OnInit {
   loading: any = true;
+  searchKey: any;
   constructor(
     private toastr: ToastrService,
     public admin: AdminService,

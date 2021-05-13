@@ -1,41 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserListService } from '../user-list.service';
 
 @Component({
-  selector: 'app-editform',
-  templateUrl: './editform.component.html',
-  styleUrls: ['./editform.component.css'],
+  selector: 'app-addproducts',
+  templateUrl: './addproducts.component.html',
+  styleUrls: ['./addproducts.component.css'],
 })
-export class EditformComponent implements OnInit {
-  cake: any;
-  loading: any = true;
-  cakeIngs: any = [];
-
+export class AddproductsComponent implements OnInit {
+  cake: any = { ingredients: [], owner: {} };
   constructor(
-    private http: HttpClient,
-    private cs: UserListService,
     private toastr: ToastrService,
-    private route: ActivatedRoute
-  ) {
-    const id = this.route.snapshot.params.cakeId;
-    this.http.get(this.cs.apiUrl + 'cake/' + id).subscribe(
-      (res: any) => {
-        if (res.data) {
-          this.cake = res.data;
-          this.updateIngs();
-          this.loading = false;
-          return;
-        }
-        this.toastr.error(res.message);
-      },
-      (req) => {}
-    );
-  }
+    private http: HttpClient,
+    private cs: UserListService
+  ) {}
 
   ngOnInit(): void {}
+  addcake() {
+    if (this.cs.validateCakeDetails(this.cake)) {
+      this.cake.ingredients = this.cake.ingredients.filter(
+        (e: any) => e || e.trim()
+      );
+
+      console.log(this.cake);
+      return;
+    }
+    this.toastr.info('Please fill all fields correctly.');
+  }
 
   upload(e: any) {
     e = e.target.parentElement.parentElement;
@@ -81,37 +73,18 @@ export class EditformComponent implements OnInit {
       }
     );
   }
+
   imgPreview(imgEl: any) {
     const file: any = imgEl.target,
       imgOutput: any = document.querySelector('.preview-img img');
 
     imgOutput.src = URL.createObjectURL(file.files[0]);
   }
-  saveChanges() {
-    if (this.cs.validateCakeDetails(this.cake)) {
-      this.cake.ingredients = this.cake.ingredients.filter((e: any) => e);
-      this.updateIngs();
-
-      console.log(this.cake);
-      return;
-    }
-    this.toastr.info('Please fill all fields correctly.');
-  }
 
   deleteIng(i: any) {
     this.cake.ingredients.splice(i, 1);
-    this.updateIngs();
   }
   addIng(e: any) {
-    e.preventDefault();
     this.cake.ingredients.push('');
-    this.updateIngs();
   }
-
-  updateIngs() {
-    this.cakeIngs = [];
-    this.cakeIngs = this.cake.ingredients.map((e: any) => e);
-  }
-
-  
 }

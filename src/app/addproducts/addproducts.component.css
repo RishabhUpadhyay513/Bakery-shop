@@ -1,0 +1,153 @@
+label {
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.login-section form {
+  width: 100%;
+}
+.login-section form input {
+  margin: 20px 0;
+}
+.login-section form button {
+  margin: 10px;
+}
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  flex-direction: column;
+  background: rgb(164, 235, 245);
+  padding: 25px 0px;
+  border: 0.5px solid black;
+  border-radius: 5px;
+  width: 70%;
+}
+.login-section form {
+  width: 70%;
+}
+.login-section form input {
+  margin: 20px 0;
+}
+.login-section form button {
+  margin: 10px;
+}
+.preview-img {
+  max-width: 20%;
+  max-height: 100%;
+  margin: 30px;
+  /* overflow: hidden; */
+}
+.preview-img img {
+  width: 100%;
+  max-height: 60%;
+  object-fit: cover;
+  min-width: 100px;
+}
+
+.form-group.flex {
+  justify-content: flex-start;
+}
+.form-group.flex > div {
+  width: 50%;
+  justify-content: space-around;
+}
+.form-group.flex > div > input {
+  width: 70%;
+}
+
+.flex.owner-details {
+  justify-content: flex-start;
+  width: 100%;
+}
+.flex.owner-details > div {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  align-items: center;
+}
+.flex.owner-details > div > input {
+  width: 70%;
+}
+
+#eggless {
+  margin: 0 30px;
+  width: 20px;
+  height: 20px;
+}
+label[for="eggless"] {
+  margin: 20px 0;
+  font-size: 20px;
+}
+.ingredient {
+  width: 90%;
+  padding-left: 5%;
+  flex-wrap: wrap;
+  /* align-items: center;s */
+  justify-content: space-between;
+}
+.ingredient > div {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ingredient > div > input {
+  width: 80%;
+  /* margin: 0; */
+}
+.ingredient > div > button {
+  margin: 0;
+  padding: 0;
+}
+@media screen and (max-width: 940px) {
+  .owner-details {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .flex.owner-details > div {
+    width: 100%;
+  }
+  .flex.owner-details > div > input {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .login-section {
+    margin: 20px auto;
+    padding: 0;
+    width: 90%;
+  }
+}
+@media screen and (max-width: 620px) {
+  .form-group.flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .form-group.flex > div {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .form-group.flex > div > input {
+    width: 80%;
+  }
+  .form-group.flex > div.flex.type {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .form-group.flex > div.flex.type > input {
+    width: 100%;
+  }
+  .flex.owner-details > div > input {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .login-section {
+    margin: 20px auto;
+    padding: 0;
+    width: 100%;
+  }
+}

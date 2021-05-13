@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
           this.loading = false;
           return (this.cartItems = res.data);
         }
-        console.log(res.message);
+        // console.log(res.message);
         this.toastr.warning(res.message);
       },
       (err: any) => {
@@ -60,7 +60,7 @@ export class CartComponent implements OnInit {
       .post(this.cs.apiUrl + 'removecakefromcart', { cakeid: id })
       .subscribe(
         (res: any) => {
-          console.log(res);
+          // console.log(res);
           if (res.message === 'Removed  item from cart') {
             this.toastr.success(res.message);
             this.loading = 'upldating';

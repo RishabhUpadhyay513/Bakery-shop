@@ -1,20 +1,123 @@
-<div class="login-section">
-  <h1>Login Form</h1>
-  <form (submit)="upload($event)">
-    <div class="form-group">
-      <label for="image">Image</label>
-      <div class="preview-img">
-        <img src="" alt="" />
-      </div>
-      <input
-        type="file"
-        name="image"
-        (change)="imgPreview($event)"
-        class="form-control"
-        id="image"
-      />
-    </div>
+<div class="cart flex">
+  <header class="cart-header flex">
+    <h1>My Orders</h1>
+  </header>
 
-    <button type="submit" class="btn btn-primary">Upload</button>
-  </form>
+  <main class="cart-main flex">
+    <div class="cart-products flex">
+      <ul class="cart-products-list flex" *ngIf="loading">
+        <p *ngIf="loading !== 'upldating'">
+          <img
+            class="loading"
+            src="https://i.stack.imgur.com/hzk6C.gif"
+            alt=""
+          />
+          your order info
+        </p>
+        <p *ngIf="loading === 'upldating'">
+          <img
+            class="loading"
+            src="https://xtremexmartialarts.com/wp-content/uploads/2020/07/anim-circ-preloader.gif"
+            alt=""
+          />
+          your order info
+        </p>
+      </ul>
+      <ul class="cart-products-list flex" *ngIf="!loading && !totalPrice">
+        <p class="cart-empty">
+          <img
+            class="loading"
+            src="https://www.pngfind.com/pngs/b/272-2727925_cart-png.png"
+            alt=""
+          />
+          <span>
+            My Order is Empty.
+            <a routerLink="/">Click here</a> to Order Cakes</span
+          >
+        </p>
+      </ul>
+      <ul class="cart-products-list flex" *ngIf="!loading && totalPrice">
+        <li class="products-header">
+          <p>Order</p>
+          <p class="center">Order Id</p>
+          <p class="center">Payment Mode</p>
+          <p class="center">Price</p>
+        </li>
+
+        <div class="order-details" *ngFor="let item of cartItems">
+          <li class="products">
+            <p class="item-title">
+              <span (click)="showOrderDetails(item.orderid)"
+                ><p class="click-effect">
+                  {{ item.name }}
+                  <span class="small-text">({{ item.orderdate }})</span>
+                </p>
+                <p class="small-text">
+                  Phone No. :
+                  {{ item.phone }}
+                </p>
+                <p class="small-text">
+                  Mail Id :
+                  {{ item.email }}
+                </p>
+                <p class="small-text">
+                  Address:
+                  {{ item.address + "," + item.city + "-" + item.pincode }}
+                </p>
+              </span>
+            </p>
+            <p class="center">{{ item.orderid }}</p>
+            <p class="center">{{ item.mode }}</p>
+            <p class="center">₹ {{ item.price }}</p>
+          </li>
+
+          <div class="details hidden" id="{{ item.orderid }}">
+            <li class="products-header">
+              <p>Order Details</p>
+              <p>Price</p>
+              <p>Qty</p>
+              <p>Subtotal</p>
+            </li>
+            <li class="products" *ngFor="let cake of item.cakes">
+              <p class="cakename">
+                <img [src]="cake.image" alt="" />
+                <span
+                  >{{ cake.name }}
+                  <p class="small-text">
+                    Weight:
+                    {{ cake.weight }}kg
+                  </p>
+                </span>
+              </p>
+              <p>₹{{ cake.price }}</p>
+              <p>{{ cake.quantity }}</p>
+              <p>₹{{ cake.price * cake.quantity }}</p>
+            </li>
+            <li class="products-header"></li>
+            <li class="products-header total">
+              <p>
+                <i class="fas fa-truck"></i>
+                {{
+                  !item.freeDelivery
+                    ? " Delivery Charge: ₹" + cs.deliveryCharge
+                    : "Free Delivery"
+                }}
+              </p>
+              <p></p>
+              <p>Total :</p>
+              <p class="total">
+                <span class="delivery-charge"> ₹ {{ item.subtotal }}</span>
+                <span class="delivery-charge">
+                  + ₹ {{ !item.freeDelivery ? cs.deliveryCharge : 0 }}</span
+                >
+
+                <span class="total-price"> ₹ {{ item.price }} </span>
+              </p>
+            </li>
+          </div>
+        </div>
+        <li class="products-header"></li>
+      </ul>
+    </div>
+  </main>
 </div>

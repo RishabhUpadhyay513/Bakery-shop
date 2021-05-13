@@ -32,6 +32,7 @@ import { AuthinterceptorService } from './authinterceptor.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
 import { EditformComponent } from './editform/editform.component';
+import { AddproductsComponent } from './addproducts/addproducts.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { EditformComponent } from './editform/editform.component';
     CheckoutComponent,
     AdminComponent,
     EditformComponent,
+    AddproductsComponent,
   ],
   imports: [
     BrowserModule,

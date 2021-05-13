@@ -1,7 +1,12 @@
+<router-outlet></router-outlet>
 <div class="admin flex">
   <header class="admin-header flex">
     <h1>Cakes</h1>
-    <div class="admin-right"></div>
+    <div class="cart-right">
+      <button class="btn btn-primary click-effect" routerLink="/admin/addcake">
+        <i class="far fa-plus-square fs-2x"></i> Add Cake
+      </button>
+    </div>
   </header>
   <app-search [cakeArr]="admin.cakeList" [adminUser]="true"></app-search>
   <main class="admin-main flex">
@@ -16,7 +21,19 @@
           Cakes...
         </p>
       </ul>
-      <ul class="admin-products-list flex" *ngIf="!loading">
+      <ul
+        class="admin-products-list flex"
+        *ngIf="!loading && admin.cakeSearch.length === 0"
+      >
+        <p class="notfound" *ngIf="loading !== 'upldating'">
+          <img class="loading" src="assets/notFound.png" alt="" />
+          No Cake found !!! For your Search Query.
+        </p>
+      </ul>
+      <ul
+        class="admin-products-list flex"
+        *ngIf="!loading && admin.cakeSearch.length > 0"
+      >
         <!-- <app-adminsearch [cakearr]="cs.cakeList"></app-adminsearch> -->
         <li class="products-header">
           <p>Products</p>
@@ -30,7 +47,7 @@
               ><p>{{ item.name }}</p>
             </span>
           </p>
-          <p>₹ {{ item.price }}</p>
+          <p>₹ {{ item.price | number: "1.0-1" }}</p>
           <p>
             <button class="btn" routerLink="/admin/editcake/{{ item.cakeid }}">
               <i class="fas fa-edit"></i>
@@ -41,11 +58,11 @@
       </ul>
     </div>
   </main>
-  <app-pagination
-    *ngIf="!loading"
+  <!-- <app-pagination
+    *ngIf="!loading && admin.cakeSearch.length > 0"
     [cakesArr]="admin.cakeList"
     [adminUser]="true"
-  ></app-pagination>
+  ></app-pagination> -->
 </div>
 
 <!-- <div class="edit">

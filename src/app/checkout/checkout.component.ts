@@ -10,7 +10,7 @@ import { UserListService } from '../user-list.service';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-  user: any = { totalPrice: this.cs.deliveryCharge };
+  user: any = { price: 0 };
   cartItems: any = [];
 
   constructor(
@@ -27,12 +27,13 @@ export class CheckoutComponent implements OnInit {
     this.http.post(this.cs.apiUrl + 'cakecart', {}).subscribe(
       (res: any) => {
         if (res.data) {
-          this.user.totalPrice += res.data.reduce(
+          this.user.price += res.data.reduce(
             (acc: any, item: any) => item.price * item.quantity + acc,
             0
           );
 
-          if (this.user.totalPrice <= 0) this.router.navigate(['/']);
+          if (this.user.price <= 0) this.router.navigate(['/']);
+          if (this.user.price < 500) this.user.price += this.cs.deliveryCharge;
 
           return (this.cartItems = res.data);
         }
@@ -74,5 +75,20 @@ export class CheckoutComponent implements OnInit {
 
     const orderObj = { ...this.user, cakes: this.cartItems };
     console.log(orderObj);
+
+    this.http.post(this.cs.apiUrl + 'addcakeorder', orderObj).subscribe(
+      (res: any) => {
+        console.log(res);
+        if (res.messageg === 'order placed') {
+          this.toastr.success('Your Order Placed!!');
+          this.router.navigate(['/myorders']);
+          return;
+        }
+        this.toastr.warning(res.messageg);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

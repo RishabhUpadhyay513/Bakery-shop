@@ -41,7 +41,7 @@ h1 {
   max-width: 50px;
 }
 .admin .admin-products-list .item-img {
-  width: 70%;
+  width: 75px;
   height: auto;
   object-fit: cover;
   border-radius: 10px;
@@ -103,7 +103,24 @@ p.small-text {
 }
 app-search {
   width: 80%;
-  
+}
+.admin-products-list p.notfound {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  color: #6f4e37;
+  font-weight: 600;
+  font-size: 15px;
+  justify-content: space-between;
+}
+.admin-products-list p.notfound img {
+  width: 50%;
+  margin-bottom: 20px;
+}
+.cart-right button,
+.cart-right i {
+  font-size: 25px;
 }
 @media screen and (max-width: 840px) {
   * {

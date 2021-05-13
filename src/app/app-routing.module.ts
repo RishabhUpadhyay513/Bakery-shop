@@ -22,8 +22,11 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'myorders', component: MyordersComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'admin/editcake/:cakeId', component: EditformComponent },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
 ];
 
 @NgModule({

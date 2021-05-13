@@ -23,7 +23,6 @@ export class CakeDetailsComponent implements OnInit {
     const id = +this.route.snapshot.params.cakeId;
     this.http.get(this.cs.apiUrl + 'cake/' + id).subscribe(
       (res: any) => {
-        console.log(res.data);
         this.cake = res.data;
         this.dataloaded = true;
       },

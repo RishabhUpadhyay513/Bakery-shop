@@ -8,21 +8,29 @@ import { sliderImgs, cakeList, users } from './data';
 })
 export class UserListService {
   users: any = [];
+  paginationArr: any = [];
   sliderImgs: any = sliderImgs;
   cakeList: any = [];
   cakeSearch: any = [];
   deliveryCharge: any = 45;
+  orderconfirm: any = false;
+  order: any = {};
+  payment: any = false;
   userData: any = users;
   apiUrl: any = 'https://apifromashu.herokuapp.com/api/';
 
   constructor(private http: HttpClient, private toastr: ToastrService) {
     this.getCakeList();
   }
+  getcakes() {
+    this.cakeSearch = [...this.cakeList];
+  }
   getCakeList() {
     this.http.get(this.apiUrl + 'allcakes').subscribe(
       (res: any) => {
         if (res.data) this.cakeList = res.data;
         this.cakeSearch = [...this.cakeList];
+        this.paginationArr = [...this.cakeList];
         // console.log(res.data);
       },
       (err) => {
@@ -42,6 +50,7 @@ export class UserListService {
   pincode(code: any) {
     return /^(\d{4}|\d{6})$/.test(code);
   }
+
   getCakeDetails(id: any) {
     let cake: any = {};
     this.http.get(this.apiUrl + 'cake/' + id).subscribe(
@@ -55,7 +64,8 @@ export class UserListService {
   }
 
   validateEmail(email: any) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
 

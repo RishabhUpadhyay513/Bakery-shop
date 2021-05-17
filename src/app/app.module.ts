@@ -33,6 +33,11 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
 import { EditformComponent } from './editform/editform.component';
 import { AddproductsComponent } from './addproducts/addproducts.component';
+import { OrdsummaryComponent } from './ordsummary/ordsummary.component';
+import { CheckoutmeComponent } from './checkoutme/checkoutme.component';
+import { AddressComponent } from './address/address.component';
+import { PayComponent } from './pay/pay.component';
+import { GuardRouteService } from './guard-route.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +67,10 @@ import { AddproductsComponent } from './addproducts/addproducts.component';
     AdminComponent,
     EditformComponent,
     AddproductsComponent,
+    OrdsummaryComponent,
+    CheckoutmeComponent,
+    AddressComponent,
+    PayComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +91,7 @@ import { AddproductsComponent } from './addproducts/addproducts.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthinterceptorService,
       multi: true,
-    },
+    },GuardRouteService
   ],
   bootstrap: [AppComponent],
 })

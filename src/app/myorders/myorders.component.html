@@ -46,6 +46,22 @@
 
         <div class="order-details" *ngFor="let item of cartItems">
           <li class="products" (click)="showOrderDetails(item.orderid)">
+            <button
+              type="button"
+              class="btn btn-outline-success status"
+              disabled
+              *ngIf="!item.pending"
+            >
+              Confirmed
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-info status"
+              disabled
+              *ngIf="item.pending"
+            >
+              Pending
+            </button>
             <p class="item-title">
               <span
                 ><p>

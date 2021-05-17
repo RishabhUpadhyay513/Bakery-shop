@@ -1,23 +1,26 @@
-.signup-section {
+.login-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  margin: 50px 20px;
   flex-direction: column;
   background: var(--form-bg-color);
   color: var(--form-color);
-  padding: 50px;
+  padding: 50px 10px;
   border: 0.5px solid black;
 }
-.signup-section form {
+.login-section form {
   width: 70%;
 }
-.signup-section form input {
+.login-section form input {
   margin: 20px 0;
+}
+.login-section form button {
+  margin: 10px;
 }
 
 @media screen and (max-width: 800px) {
-  .signup-section {
+  .login-section {
     margin: 20px 2px;
     padding: 2vw;
   }

@@ -1,0 +1,18 @@
+<div class="payment">
+  <div>
+    <h1>Confirm Details</h1>
+    <div>
+      <p>Name :{{ cs.order.name }}</p>
+      <p>Phone No. :{{ cs.order.phone }}</p>
+      <p>
+        Delivery Address :{{ cs.order.address }},{{ cs.order.city }},{{
+          cs.order.pincode
+        }}
+      </p>
+
+      <p>Total Amount To Pay:{{ cs.order.price }}</p>
+      <p>Payment Mode : Cash</p>
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="payment()">Place Order</button>
+</div>

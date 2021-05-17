@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 import { UserListService } from '../user-list.service';
 
@@ -16,15 +17,15 @@ export class SearchComponent implements OnInit {
   filter(q: any) {
     if (!this.adminUser) {
       if (q === 'htl')
-        this.cs.cakeSearch = this.cakeArr.sort(
+        this.cs.paginationArr = this.cs.paginationArr.sort(
           (cake1: any, cake2: any) => cake2.price - cake1.price
         );
 
       if (q === 'lth')
-        this.cs.cakeSearch = this.cakeArr.sort(
+        this.cs.paginationArr = this.cs.paginationArr.sort(
           (cake1: any, cake2: any) => cake1.price - cake2.price
         );
-
+      // this.cs.getcakes();
       if (q === 'res') this.cs.getCakeList();
     } else {
       if (q === 'htl')

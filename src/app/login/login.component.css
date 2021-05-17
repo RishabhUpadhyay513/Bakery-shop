@@ -4,7 +4,8 @@
   align-items: center;
   margin: 50px;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.521);
+  background: var(--form-bg-color);
+  color: var(--form-color);
   padding: 50px;
   border: 0.5px solid black;
 }

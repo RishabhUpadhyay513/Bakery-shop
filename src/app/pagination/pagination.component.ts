@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 import { UserListService } from '../user-list.service';
 
@@ -16,27 +17,29 @@ export class PaginationComponent implements OnInit {
   start: any;
   end: any;
   resultPerPage: any = 12;
-  constructor(private cs: UserListService, private admin: AdminService) {}
+  constructor(
+    private cs: UserListService,
+    private admin: AdminService,
+    private router: Router
+  ) {}
   showPage(page: any) {
     this.currentp = page;
-    this.pagination();
-    console.log(this.currentp);
   }
   pagination() {
-    this.noOfpages = Math.ceil(this.cakesArr.length / this.resultPerPage);
+    this.noOfpages = Math.ceil(
+      this.cs.paginationArr.length / this.resultPerPage
+    );
     this.start = (this.currentp - 1) * this.resultPerPage;
     this.end = this.currentp * this.resultPerPage;
     this.paginationArr = Array(this.noOfpages);
     this.paginationArr = Array.from(this.paginationArr, (e, i) => i + 1);
-    const resArr = this.cakesArr.slice(this.start, this.end);
-
-    !this.adminUser
-      ? (this.cs.cakeSearch = resArr)
-      : (this.admin.cakeSearch = resArr);
+    return this.cs.paginationArr.slice(this.start, this.end);
   }
 
   ngDoCheck() {
-    this.pagination();
+    !this.adminUser
+      ? (this.cs.cakeSearch = this.pagination())
+      : (this.admin.cakeSearch = this.pagination());
   }
   ngOnInit(): void {
     // this.pagination();

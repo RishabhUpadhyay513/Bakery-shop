@@ -1,0 +1,21 @@
+<div class="checkout">
+  <div class="sidebar">
+    <ul>
+      <li><a routerLink="/checkout">Order Summary</a></li>
+      <li>
+        <a *ngIf="cs.orderconfirm" routerLink="/checkout/address"
+          >Place Order</a
+        >
+        <a *ngIf="!cs.orderconfirm">Place Order</a>
+      </li>
+      <li>
+        <a *ngIf="cs.payment" routerLink="/checkout/address">Confirm Details</a>
+        <a *ngIf="!cs.payment">Confirm Details</a>
+      </li>
+      <!-- <li><a routerLink="/checkout/payment">Payment</a></li> -->
+    </ul>
+  </div>
+  <div class="mainb">
+    <router-outlet></router-outlet>
+  </div>
+</div>

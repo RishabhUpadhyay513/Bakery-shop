@@ -34,7 +34,7 @@ export class MyordersComponent implements OnInit {
         // console.log(res);
         if (res.cakeorders) {
           this.loading = false;
-          // console.log(res.cakeorders);
+          console.log(res.cakeorders);
           this.cartItems = res.cakeorders;
           this.cartItems.forEach((e: any) => {
             const orddate = new Date(e.orderdate);
@@ -85,24 +85,4 @@ export class MyordersComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  remove(id: any) {
-    this.http
-      .post(this.cs.apiUrl + 'removecakefromcart', { cakeid: id })
-      .subscribe(
-        (res: any) => {
-          // console.log(res);
-          if (res.message === 'Removed  item from cart') {
-            this.toastr.success(res.message);
-            this.loading = 'upldating';
-            this.getCartItems();
-            return;
-          }
-          this.toastr.warning(res.message);
-        },
-        (err: any) => {
-          console.log(err);
-          this.toastr.error(err.message);
-        }
-      );
-  }
 }

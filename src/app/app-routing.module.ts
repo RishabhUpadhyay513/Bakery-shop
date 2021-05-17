@@ -29,7 +29,11 @@ const routes: Routes = [
   { path: 'search', component: SearchResultsDisComponent },
   { path: 'cakes/:cakeId', component: CakeDetailsComponent },
   { path: 'cart', component: CartComponent, canActivate: [GuardRouteService] },
-  { path: 'myorders', component: MyordersComponent },
+  {
+    path: 'myorders',
+    component: MyordersComponent,
+    canActivate: [GuardRouteService],
+  },
   {
     path: 'checkout',
     children: [

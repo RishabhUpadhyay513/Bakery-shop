@@ -32,6 +32,7 @@ export class AddressComponent implements OnInit {
     this.http.post(this.cs.apiUrl + 'cakecart', {}).subscribe(
       (res: any) => {
         if (res.data) {
+          this.user.price = 0;
           this.user.price += res.data.reduce(
             (acc: any, item: any) => item.price * item.quantity + acc,
             0

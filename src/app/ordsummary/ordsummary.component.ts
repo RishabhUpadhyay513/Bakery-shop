@@ -83,6 +83,15 @@ export class OrdsummaryComponent implements OnInit {
   }
   next() {
     this.cs.orderconfirm = true;
+    const index = this.cs.ullist.findIndex((e: any) =>
+      e.className.includes('active')
+    );
+    {
+      this.cs.ullist[index].classList.remove('active');
+
+      this.cs.ullist[index + 1].classList.add('active');
+    }
+
     this.router.navigate(['/checkout/address']);
   }
 }

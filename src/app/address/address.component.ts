@@ -81,6 +81,11 @@ export class AddressComponent implements OnInit {
 
     this.cs.order = { ...this.user, cakes: this.cartItems };
     this.cs.payment = true;
+    const index = this.cs.ullist.findIndex((e: any) =>
+      e.className.includes('active')
+    );
+    this.cs.ullist[index].classList.remove('active');
+    this.cs.ullist[index + 1].classList.add('active');
     this.router.navigate(['/checkout/payment']);
   }
 }

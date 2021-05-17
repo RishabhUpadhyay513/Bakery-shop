@@ -17,6 +17,7 @@ export class UserListService {
   order: any = {};
   payment: any = false;
   userData: any = users;
+  ullist: any = [];
   apiUrl: any = 'https://apifromashu.herokuapp.com/api/';
 
   constructor(private http: HttpClient, private toastr: ToastrService) {

@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class GuardRouteService implements CanActivate {
   constructor(private router: Router, private toastr: ToastrService) {}
+  
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

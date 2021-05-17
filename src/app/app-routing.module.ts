@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './address/address.component';
-import { AdminComponent } from './admin/admin.component';
 import { CakeDetailsComponent } from './cake-details/cake-details.component';
 import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutmeComponent } from './checkoutme/checkoutme.component';
-import { EditformComponent } from './editform/editform.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { GuardRouteService } from './guard-route.service';
 import { HomeComponent } from './home/home.component';

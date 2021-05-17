@@ -19,6 +19,8 @@ export class AddressComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router
   ) {
+    if (this.cs.order.name) this.user = this.cs.order;
+
     if (!cs.orderconfirm) {
       this.router.navigate(['/checkout']);
     }

@@ -7,10 +7,12 @@ import { UserListService } from '../user-list.service';
   styleUrls: ['./checkoutme.component.css'],
 })
 export class CheckoutmeComponent implements OnInit {
-  constructor(public cs: UserListService) {
-    
+  constructor(public cs: UserListService) {}
+  ngDoCheck() {
+    if (!this.cs.order.name) {
+      this.cs.payment = false;
+    }
   }
 
-  
   ngOnInit(): void {}
 }

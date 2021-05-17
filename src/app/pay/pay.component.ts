@@ -17,8 +17,10 @@ export class PayComponent implements OnInit {
     private router: Router
   ) {
     if (!cs.order.name) {
+      
       this.router.navigate(['/checkout']);
     }
+
     console.log(cs.order);
   }
 

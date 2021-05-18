@@ -27,9 +27,6 @@ export class AddressComponent implements T {
     }
     this.getCartItems();
   }
-  confirm() {
-    return true;
-  }
 
   ngOnInit(): void {}
   getCartItems() {
@@ -86,5 +83,22 @@ export class AddressComponent implements T {
     this.cs.order = { ...this.user, cakes: this.cartItems };
 
     this.router.navigate(['/checkout/payment']);
+  }
+  confirm(next: any) {
+    if (next.url === '/checkout/payment') {
+      if (
+        confirm('Please check your details. If You Already checked Click Ok.')
+      ) {
+        this.cs.payment = true;
+
+        const index = this.cs.ullist.findIndex((e: any) =>
+          e.className.includes('active')
+        );
+        this.cs.ullist[index].classList.remove('active');
+        this.cs.ullist[index + 1].classList.add('active');
+        return true;
+      } else return false;
+    }
+    return true;
   }
 }

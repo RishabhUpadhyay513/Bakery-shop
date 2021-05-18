@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 
 export interface T {
-  confirm(): boolean;
+  confirm(nextState: any): boolean;
 }
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,8 @@ export class ConfirmationGaurdService implements CanDeactivate<T> {
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot
   ): boolean {
-    if (nextState?.url === '/checkout') return component.confirm();
+    if (nextState?.url.includes('/checkout'))
+      return component.confirm(nextState);
     return true;
   }
 }

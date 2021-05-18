@@ -74,15 +74,13 @@
     <div class="form-group flex">
       <div class="flex type">
         <label for="type">Type :</label>
-        <input
-          name="type"
-          type="text"
-          class="form-control"
-          id="type"
-          [(ngModel)]="cake.type"
-          placeholder="Enter cake type"
-          autocomplete="disabled"
-        />
+        <select class="form-select" name="type" [(ngModel)]="cake.type">
+          <option value="">Select Cake type</option>
+          <option value="General">General</option>
+          <option value="Special">Special</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Wedding">Wedding</option>
+        </select>
       </div>
       <div class="flex">
         <label for="eggless">Eggless :</label>

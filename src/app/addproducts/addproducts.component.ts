@@ -10,7 +10,7 @@ import { UserListService } from '../user-list.service';
   styleUrls: ['./addproducts.component.css'],
 })
 export class AddproductsComponent implements OnInit {
-  cake: any = {};
+  cake: any = { type: '' };
   ingrediant: any = {};
   ingredients: any = [];
   constructor(
@@ -22,6 +22,7 @@ export class AddproductsComponent implements OnInit {
 
   ngOnInit(): void {}
   addcake() {
+    
     if (!this.cake.image) {
       this.toastr.warning('Please Upload the cake image first.');
       return;

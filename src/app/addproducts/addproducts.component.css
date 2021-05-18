@@ -6,7 +6,8 @@ label {
 .login-section form {
   width: 100%;
 }
-.login-section form input {
+.login-section form input,
+.login-section form select {
   margin: 20px 0;
 }
 .login-section form button {
@@ -28,6 +29,7 @@ label {
 .login-section form {
   width: 70%;
 }
+.login-section form select,
 .login-section form input {
   margin: 20px 0;
 }
@@ -54,7 +56,8 @@ label {
   width: 50%;
   justify-content: space-around;
 }
-.form-group.flex > div > input {
+.form-group.flex > div > input,
+.form-group.flex > div > select {
   width: 70%;
 }
 
@@ -68,7 +71,8 @@ label {
   width: 50%;
   align-items: center;
 }
-.flex.owner-details > div > input {
+.flex.owner-details > div > input,
+.flex.owner-details > div > select {
   width: 70%;
 }
 
@@ -111,7 +115,8 @@ label[for="eggless"] {
   .flex.owner-details > div {
     width: 100%;
   }
-  .flex.owner-details > div > input {
+  .flex.owner-details > div > input,
+  .flex.owner-details > div > select {
     width: 70%;
   }
 }
@@ -131,6 +136,7 @@ label[for="eggless"] {
     width: 100%;
     justify-content: flex-start;
   }
+  .form-group.flex > div > select,
   .form-group.flex > div > input {
     width: 80%;
   }
@@ -138,9 +144,11 @@ label[for="eggless"] {
     flex-direction: column;
     align-items: flex-start;
   }
-  .form-group.flex > div.flex.type > input {
+  .form-group.flex > div.flex.type > input,
+  .form-group.flex > div.flex.type > select {
     width: 100%;
   }
+  .flex.owner-details > div > select,
   .flex.owner-details > div > input {
     width: 60%;
   }

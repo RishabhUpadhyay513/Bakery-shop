@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { UserListService } from '../user-list.service';
+import { T } from '../confirmation-gaurd.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements T {
   qty: any = 1;
 
   deliveryCharge: any = 0;
@@ -74,5 +75,8 @@ export class CartComponent implements OnInit {
           this.toastr.error(err.message);
         }
       );
+  }
+  confirm() {
+    return confirm('Are you sure you want to checkout?');
   }
 }

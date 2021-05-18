@@ -4,6 +4,7 @@ import { AddressComponent } from './address/address.component';
 import { CakeDetailsComponent } from './cake-details/cake-details.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutmeComponent } from './checkoutme/checkoutme.component';
+import { ConfirmationGaurdService } from './confirmation-gaurd.service';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { GuardRouteService } from './guard-route.service';
 import { HomeComponent } from './home/home.component';
@@ -21,11 +22,24 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [GuardRouteService],
   },
-  { path: 'signup', component: SignupComponent },
-  { path: 'forgetPassword', component: ForgetPasswordComponent },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    canActivate: [GuardRouteService],
+  },
+  {
+    path: 'forgetPassword',
+    component: ForgetPasswordComponent,
+    canActivate: [GuardRouteService],
+  },
   { path: 'search', component: SearchResultsDisComponent },
   { path: 'cakes/:cakeId', component: CakeDetailsComponent },
-  { path: 'cart', component: CartComponent, canActivate: [GuardRouteService] },
+  {
+    path: 'cart',
+    component: CartComponent,
+    canActivate: [GuardRouteService],
+    canDeactivate: [ConfirmationGaurdService],
+  },
   {
     path: 'myorders',
     component: MyordersComponent,
@@ -35,7 +49,11 @@ const routes: Routes = [
     path: 'checkout',
     children: [
       { path: '', component: OrdsummaryComponent },
-      { path: 'address', component: AddressComponent },
+      {
+        path: 'address',
+        component: AddressComponent,
+        canDeactivate: [ConfirmationGaurdService],
+      },
       {
         path: 'payment',
         component: PayComponent,

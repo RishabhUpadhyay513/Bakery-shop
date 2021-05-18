@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { T } from '../confirmation-gaurd.service';
 import { UserListService } from '../user-list.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserListService } from '../user-list.service';
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.css'],
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent implements T {
   user: any = { price: 0 };
   cartItems: any = [];
 
@@ -25,6 +26,9 @@ export class AddressComponent implements OnInit {
       this.router.navigate(['/checkout']);
     }
     this.getCartItems();
+  }
+  confirm() {
+    return true;
   }
 
   ngOnInit(): void {}
@@ -80,12 +84,7 @@ export class AddressComponent implements OnInit {
     }
 
     this.cs.order = { ...this.user, cakes: this.cartItems };
-    this.cs.payment = true;
-    const index = this.cs.ullist.findIndex((e: any) =>
-      e.className.includes('active')
-    );
-    this.cs.ullist[index].classList.remove('active');
-    this.cs.ullist[index + 1].classList.add('active');
+
     this.router.navigate(['/checkout/payment']);
   }
 }

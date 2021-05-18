@@ -38,6 +38,7 @@ import { CheckoutmeComponent } from './checkoutme/checkoutme.component';
 import { AddressComponent } from './address/address.component';
 import { PayComponent } from './pay/pay.component';
 import { GuardRouteService } from './guard-route.service';
+import { ConfirmationGaurdService } from './confirmation-gaurd.service';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,7 @@ import { GuardRouteService } from './guard-route.service';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthinterceptorService,
       multi: true,
-    },GuardRouteService
+    },GuardRouteService, ConfirmationGaurdService
   ],
   bootstrap: [AppComponent],
 })

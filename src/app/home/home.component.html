@@ -9,17 +9,17 @@
 </div> -->
 
 <div class="cake-list">
-  <app-card *ngFor="let cake1 of cs.cakeSearch" [cake]="cake1"></app-card>
+  <app-card *ngFor="let cake of cs.cakeSearch" [cake]="cake"></app-card>
 
-  <div *ngIf="cs.cakeSearch.length === 0" class="no-query">
+  <div *ngIf="cs.cakeSearch?.length === 0" class="no-query">
     <p>
       <img src="assets/404.png" alt="no-found" /><br />
       No Cake found.(404)!!
     </p>
   </div>
-  <app-pagination
+  <!-- <app-pagination
     [cakesArr]="cs.cakeList"
     class="w-100 m-2x"
     *ngIf="cs.cakeList.length"
-  ></app-pagination>
+  ></app-pagination> -->
 </div>

@@ -2,6 +2,7 @@ import { query } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserListService } from '../user-list.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class SearchResultsDisComponent implements OnInit {
   constructor(
     public cs: UserListService,
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr: ToastrService
   ) {
     this.route.queryParams.subscribe((q: any) => {
       this.http.get(this.cs.apiUrl + 'searchcakes?q=' + q.q).subscribe(
@@ -51,6 +53,11 @@ export class SearchResultsDisComponent implements OnInit {
   }
 
   sortByPrice() {
+    if (this.maxPrice < this.minPrice) {
+      this.toastr.info('Min-Price Should be smaller then Max-Price');
+      return;
+    }
+
     if (this.minPrice || this.maxPrice) {
       this.cakesList = this.cakefilter.filter(
         (e: any) =>

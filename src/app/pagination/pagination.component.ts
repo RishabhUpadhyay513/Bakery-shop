@@ -21,25 +21,29 @@ export class PaginationComponent implements OnInit {
     private cs: UserListService,
     private admin: AdminService,
     private router: Router
-  ) {}
+  ) {
+    !this.adminUser
+      ? (this.cs.cakeSearch = this.pagination())
+      : (this.admin.cakeSearch = this.pagination());
+  }
   showPage(page: any) {
     this.currentp = page;
   }
   pagination() {
-    this.noOfpages = Math.ceil(
-      this.cs.paginationArr.length / this.resultPerPage
-    );
+    this.noOfpages = Math.ceil(this.cakesArr.length / this.resultPerPage);
     this.start = (this.currentp - 1) * this.resultPerPage;
     this.end = this.currentp * this.resultPerPage;
     this.paginationArr = Array(this.noOfpages);
     this.paginationArr = Array.from(this.paginationArr, (e, i) => i + 1);
-    return this.cs.paginationArr.slice(this.start, this.end);
+    if (!this.adminUser) {
+      this.cs.cakeSearch = this.cakesArr.slice(this.start, this.end);
+      return;
+    }
+    this.admin.cakeSearch = this.cakesArr.slice(this.start, this.end);
   }
 
   ngDoCheck() {
-    !this.adminUser
-      ? (this.cs.cakeSearch = this.pagination())
-      : (this.admin.cakeSearch = this.pagination());
+    this.pagination();
   }
   ngOnInit(): void {
     // this.pagination();

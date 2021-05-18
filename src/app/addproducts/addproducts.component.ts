@@ -22,7 +22,7 @@ export class AddproductsComponent implements OnInit {
 
   ngOnInit(): void {}
   addcake() {
-    
+    console.log(this.cake);
     if (!this.cake.image) {
       this.toastr.warning('Please Upload the cake image first.');
       return;

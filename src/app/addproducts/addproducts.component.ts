@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router, Routes } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserListService } from '../user-list.service';
 
@@ -9,21 +10,49 @@ import { UserListService } from '../user-list.service';
   styleUrls: ['./addproducts.component.css'],
 })
 export class AddproductsComponent implements OnInit {
-  cake: any = { ingredients: [], owner: {} };
+  cake: any = {};
+  ingrediant: any = {};
+  ingredients: any = [];
   constructor(
     private toastr: ToastrService,
     private http: HttpClient,
-    private cs: UserListService
+    private cs: UserListService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
   addcake() {
+    if (!this.cake.image) {
+      this.toastr.warning('Please Upload the cake image first.');
+      return;
+    }
+
     if (this.cs.validateCakeDetails(this.cake)) {
-      this.cake.ingredients = this.cake.ingredients.filter(
+      this.ingredients = Object.values(this.ingrediant);
+      this.ingredients = [...this.ingredients].filter(
         (e: any) => e || e.trim()
       );
+      this.cake.ingredients = [...this.ingredients];
+      // console.log(this.cake);
 
-      console.log(this.cake);
+      this.http.post(this.cs.apiUrl + 'addcake', this.cake).subscribe(
+        (res: any) => {
+          // console.log(res);
+          if (res.message === 'Success') {
+            this.toastr.success(`${this.cake.name} Added Successfully.`);
+            this.router.navigate(['/admin']);
+            return;
+          }
+          this.toastr.warning(res.errorMessage.message, '', {
+            positionClass: 'toast-top-full-width',
+          });
+        },
+        (err) => {
+          this.toastr.error(err.message);
+          console.log(err);
+        }
+      );
+
       return;
     }
     this.toastr.info('Please fill all fields correctly.');
@@ -82,9 +111,11 @@ export class AddproductsComponent implements OnInit {
   }
 
   deleteIng(i: any) {
-    this.cake.ingredients.splice(i, 1);
+    delete this.ingrediant[i];
+    this.ingredients = Object.values(this.ingrediant);
   }
   addIng(e: any) {
-    this.cake.ingredients.push('');
+    this.ingredients = Object.values(this.ingrediant);
+    this.ingredients.push('');
   }
 }

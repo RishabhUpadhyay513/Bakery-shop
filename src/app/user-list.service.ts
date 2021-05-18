@@ -93,14 +93,6 @@ export class UserListService {
       this.toastr.warning('Flavour field should not be empty');
       return false;
     }
-    if (
-      !this.validateEmail(cake.owner.email) ||
-      !cake.owner.name ||
-      !cake.owner.name.trim()
-    ) {
-      this.toastr.warning('Owner Email/name field should be correct');
-      return false;
-    }
 
     return true;
   }

@@ -11,6 +11,7 @@ import { UserListService } from '../user-list.service';
 export class NavbarComponent implements OnInit {
   searchQ: any;
   userLogin: any = false;
+  useremail: any = JSON.parse(localStorage.loginUser).email;
   constructor(private router: Router, private toastr: ToastrService) {}
 
   search() {

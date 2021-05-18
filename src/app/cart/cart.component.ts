@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { UserListService } from '../user-list.service';
 import { T } from '../confirmation-gaurd.service';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+// import {bootbox} from 'bootbox';
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +21,8 @@ export class CartComponent implements T {
   constructor(
     private toastr: ToastrService,
     private cs: UserListService,
-    private http: HttpClient
+    private http: HttpClient,
+    private confirmationDialogService: ConfirmationDialogService
   ) {
     this.getCartItems();
   }
@@ -77,6 +80,21 @@ export class CartComponent implements T {
       );
   }
   confirm() {
+    // console.log(this.openConfirmationDialog());
+    // bootbox.alert('Hello world!', function () {
+    //   console.log('Alert Callback');
+    // });
     return confirm('Are you sure you want to checkout?');
+  }
+
+  public openConfirmationDialog() {
+    return this.confirmationDialogService
+      .confirm('Please confirm..', 'Do you really want to checkOut?')
+      .then((confirmed) => confirmed)
+      .catch(() =>
+        console.log(
+          'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
+        )
+      );
   }
 }

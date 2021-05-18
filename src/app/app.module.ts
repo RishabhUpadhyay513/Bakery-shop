@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +39,9 @@ import { AddressComponent } from './address/address.component';
 import { PayComponent } from './pay/pay.component';
 import { GuardRouteService } from './guard-route.service';
 import { ConfirmationGaurdService } from './confirmation-gaurd.service';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 
 @NgModule({
   declarations: [
@@ -72,12 +75,14 @@ import { ConfirmationGaurdService } from './confirmation-gaurd.service';
     CheckoutmeComponent,
     AddressComponent,
     PayComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
@@ -85,15 +90,20 @@ import { ConfirmationGaurdService } from './confirmation-gaurd.service';
       positionClass: 'toast-top-left',
       preventDuplicates: true,
       enableHtml: true,
-    }), // ToastrModule added
+    }),
+    NgbModule, // ToastrModule added
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthinterceptorService,
       multi: true,
-    },GuardRouteService, ConfirmationGaurdService
+    },
+    GuardRouteService,
+    ConfirmationGaurdService,
+    ConfirmationDialogService,
   ],
   bootstrap: [AppComponent],
+  entryComponents: [ConfirmationDialogComponent],
 })
 export class AppModule {}

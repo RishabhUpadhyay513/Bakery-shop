@@ -47,19 +47,9 @@ const routes: Routes = [
   },
   {
     path: 'checkout',
-    children: [
-      { path: '', component: OrdsummaryComponent },
-      {
-        path: 'address',
-        component: AddressComponent,
-        canDeactivate: [ConfirmationGaurdService],
-      },
-      {
-        path: 'payment',
-        component: PayComponent,
-      },
-    ],
-    component: CheckoutmeComponent,
+    loadChildren: () =>
+      import('./checkoutme/checkoutme.module').then((m) => m.CheckoutmeModule),
+
     canActivate: [GuardRouteService],
   },
   {

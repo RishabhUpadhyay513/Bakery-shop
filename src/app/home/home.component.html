@@ -23,3 +23,14 @@
     *ngIf="cs.cakeList.length"
   ></app-pagination> -->
 </div>
+<div class="model" *ngIf="cs.loading">
+  <h1>Welcome To Harshit's CakeHouse</h1>
+  <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <p>Please wait loading cakes..</p>
+</div>

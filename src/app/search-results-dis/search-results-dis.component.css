@@ -9,14 +9,15 @@
   margin-bottom: 0;
 }
 .no-query {
-  background: #fff;
-  border-radius: 5px;
-  padding: 10%;
+  /* background: #fff; */
+
   width: 100%;
 }
 .no-query p {
+  background: #fff;
   width: 100%;
-
+  border-radius: 5px;
+  padding: 10%;
   text-align: center;
 
   color: #666;
@@ -25,6 +26,14 @@
   width: 100px;
   height: 100px;
   object-fit: cover;
+}
+.cart-products-list {
+  flex-direction: column;
+  width: 100%;
+  padding-right: 25px;
+}
+img.loading {
+  width: 200px !important;
 }
 .sort-by-price {
   width: 100vw;

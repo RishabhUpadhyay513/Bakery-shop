@@ -15,6 +15,7 @@ export class UserListService {
   deliveryCharge: any = 45;
   orderconfirm: any = false;
   order: any = {};
+  loading: any = true;
   payment: any = false;
   userData: any = users;
   ullist: any = [];
@@ -27,8 +28,10 @@ export class UserListService {
     this.cakeSearch = [...this.cakeList];
   }
   getCakeList() {
+    this.loading = true;
     this.http.get(this.apiUrl + 'allcakes').subscribe(
       (res: any) => {
+        this.loading = false;
         if (res.data) this.cakeList = res.data;
         this.cakeSearch = [...this.cakeList];
         this.paginationArr = [...this.cakeList];

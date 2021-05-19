@@ -35,10 +35,15 @@
 </div>
 <div class="cake-list">
   <app-card *ngFor="let cake of cakesList" [cake]="cake"></app-card>
-  <div *ngIf="cakesList.length === 0" class="no-query">
-    <p>
+  <div class="no-query">
+    <p *ngIf="!loading && cakesList.length === 0">
       <img src="assets/404.png" alt="no-found" /><br />
       No Cake found!. For your Search Query!
+    </p>
+
+    <p *ngIf="loading" class="flex">
+      <img class="loading" src="https://i.stack.imgur.com/hzk6C.gif" alt="" />
+      Search Results
     </p>
   </div>
 </div>

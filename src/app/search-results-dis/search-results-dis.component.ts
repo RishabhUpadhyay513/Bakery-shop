@@ -14,7 +14,7 @@ export class SearchResultsDisComponent implements OnInit {
   // searchQuery: any = 'r';
   minPrice: any;
   maxPrice: any;
-
+  loading: any = true;
   cakesList: any = [];
   cakefilter: any = [];
   constructor(
@@ -24,10 +24,12 @@ export class SearchResultsDisComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.route.queryParams.subscribe((q: any) => {
+      this.loading = true;
       this.http.get(this.cs.apiUrl + 'searchcakes?q=' + q.q).subscribe(
         (res: any) => {
           this.cakefilter = res.data;
           this.cakesList = this.cakefilter;
+          this.loading = false;
           // console.log(res.data);
         },
         (err) => {

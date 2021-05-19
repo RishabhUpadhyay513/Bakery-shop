@@ -13,6 +13,7 @@ export class PaginationComponent implements OnInit {
   noOfpages: any;
   paginationArr: any;
   @Input() cakesArr: any = [];
+  @Input() cakeList: any = [];
   @Input() adminUser: any = false;
   start: any;
   end: any;
@@ -22,9 +23,7 @@ export class PaginationComponent implements OnInit {
     private admin: AdminService,
     private router: Router
   ) {
-    !this.adminUser
-      ? (this.cs.cakeSearch = this.pagination())
-      : (this.admin.cakeSearch = this.pagination());
+    this.pagination();
   }
   showPage(page: any) {
     this.currentp = page;
@@ -36,7 +35,7 @@ export class PaginationComponent implements OnInit {
     this.paginationArr = Array(this.noOfpages);
     this.paginationArr = Array.from(this.paginationArr, (e, i) => i + 1);
     if (!this.adminUser) {
-      this.cs.cakeSearch = this.cakesArr.slice(this.start, this.end);
+      this.cs.cakeSearch = [...this.cakesArr].slice(this.start, this.end);
       return;
     }
     this.admin.cakeSearch = this.cakesArr.slice(this.start, this.end);
@@ -44,6 +43,9 @@ export class PaginationComponent implements OnInit {
 
   ngDoCheck() {
     this.pagination();
+    setTimeout(() => {
+      this.pagination();
+    }, 100);
   }
   ngOnInit(): void {
     // this.pagination();

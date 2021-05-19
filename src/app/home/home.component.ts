@@ -10,6 +10,7 @@ import { UserListService } from '../user-list.service';
 export class HomeComponent implements OnInit {
   cakeList: any;
   loading: any = true;
+  
   constructor(public cs: UserListService, private http: HttpClient) {}
 
   ngDoCheck() {}

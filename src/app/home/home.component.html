@@ -17,11 +17,12 @@
       No Cake found.(404)!!
     </p>
   </div>
-  <!-- <app-pagination
+  <app-pagination
     [cakesArr]="cs.cakeList"
+    [cakeList]="cakeList"
     class="w-100 m-2x"
     *ngIf="cs.cakeList.length"
-  ></app-pagination> -->
+  ></app-pagination>
 </div>
 <div class="model" *ngIf="cs.loading">
   <h1>Welcome To Harshit's CakeHouse</h1>

@@ -5,7 +5,7 @@ body {
   padding: 0;
 
   min-height: 100vh;
-  background: #ccc;
+  background: rgba(255, 106, 106, 0.377);
 }
 :root {
   --form-bg-color: #2b2a2af5;

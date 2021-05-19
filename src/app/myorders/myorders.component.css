@@ -40,6 +40,10 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
 }
+.products > a {
+  text-decoration: none;
+  color: #000;
+}
 .order-details:nth-child(odd) > .products {
   background: #deeaec;
 }

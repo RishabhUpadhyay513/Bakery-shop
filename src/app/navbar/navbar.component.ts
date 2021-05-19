@@ -11,7 +11,7 @@ import { UserListService } from '../user-list.service';
 export class NavbarComponent implements OnInit {
   searchQ: any;
   userLogin: any = false;
-  useremail: any = JSON.parse(localStorage.loginUser).email;
+  useremail: any;
   constructor(private router: Router, private toastr: ToastrService) {}
 
   search() {
@@ -21,6 +21,9 @@ export class NavbarComponent implements OnInit {
       });
   }
   ngDoCheck() {
+    this.useremail = localStorage.loginUser
+      ? JSON.parse(localStorage.loginUser).email
+      : null;
     if (localStorage.loginUser) this.userLogin = true;
     if (!localStorage.loginUser) {
       this.userLogin = false;

@@ -45,96 +45,109 @@
         </li>
 
         <div class="order-details" *ngFor="let item of cartItems">
-          <li class="products" (click)="showOrderDetails(item.orderid)">
-            <button
-              type="button"
-              class="btn btn-outline-success status"
-              disabled
-              *ngIf="!item.pending"
+          <p class="products">
+            <a
+              data-bs-toggle="collapse"
+              href="#m{{ item.orderid }}"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseExample"
             >
-              Confirmed
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-info status"
-              disabled
-              *ngIf="item.pending"
-            >
-              Pending
-            </button>
-            <p class="item-title">
-              <span
-                ><p>
-                  {{ item.name }}
-                  <span class="small-text">({{ item.orderdate }})</span>
+              <li class="products" (click)="showOrderDetails(item.orderid)">
+                <!-- <button
+                type="button"
+                class="btn btn-outline-success status"
+                disabled
+                *ngIf="!item.pending"
+              >
+                Confirmed
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-info status"
+                disabled
+                *ngIf="item.pending"
+              >
+                Pending
+              </button> -->
+                <p class="item-title">
+                  <span
+                    ><p>
+                      {{ item.name }}
+                      <span class="small-text">({{ item.orderdate }})</span>
+                    </p>
+                    <p class="small-text">
+                      Phone No. :
+                      {{ item.phone }}
+                    </p>
+                    <p class="small-text">
+                      Mail Id :
+                      {{ item.email }}
+                    </p>
+                    <p class="small-text">
+                      Address:
+                      {{ item.address + "," + item.city + "-" + item.pincode }}
+                    </p>
+                  </span>
                 </p>
-                <p class="small-text">
-                  Phone No. :
-                  {{ item.phone }}
+                <p class="center">{{ item.orderid }}</p>
+                <p class="center">{{ item.mode }}</p>
+                <p class="center">₹ {{ item.price }}</p>
+              </li>
+            </a>
+          </p>
+          <div class="collapse" id="m{{ item.orderid }}">
+            <div class="details">
+              <li class="products-header">
+                <p>Order Details</p>
+                <p>Price</p>
+                <p>Qty</p>
+                <p>Subtotal</p>
+              </li>
+              <li class="products" *ngFor="let cake of item.cakes">
+                <p class="cakename">
+                  <img
+                    class="click-effect"
+                    [src]="cake.image"
+                    alt=""
+                    routerLink="/cakes/{{ cake.cakeid }}"
+                  />
+                  <span
+                    class="click-effect"
+                    routerLink="/cakes/{{ cake.cakeid }}"
+                    >{{ cake.name }}
+                    <p class="small-text">
+                      Weight:
+                      {{ cake.weight }}kg
+                    </p>
+                  </span>
                 </p>
-                <p class="small-text">
-                  Mail Id :
-                  {{ item.email }}
+                <p>₹{{ cake.price }}</p>
+                <p>{{ cake.quantity }}</p>
+                <p>₹{{ cake.price * cake.quantity }}</p>
+              </li>
+              <li class="products-header"></li>
+              <li class="products-header total">
+                <p>
+                  <i class="fas fa-truck"></i>
+                  {{
+                    !item.freeDelivery
+                      ? " Delivery Charge: ₹" + cs.deliveryCharge
+                      : "Free Delivery"
+                  }}
                 </p>
-                <p class="small-text">
-                  Address:
-                  {{ item.address + "," + item.city + "-" + item.pincode }}
-                </p>
-              </span>
-            </p>
-            <p class="center">{{ item.orderid }}</p>
-            <p class="center">{{ item.mode }}</p>
-            <p class="center">₹ {{ item.price }}</p>
-          </li>
+                <p></p>
+                <p>Total :</p>
+                <p class="total">
+                  <span class="delivery-charge"> ₹ {{ item.subtotal }}</span>
+                  <span class="delivery-charge">
+                    + ₹ {{ !item.freeDelivery ? cs.deliveryCharge : 0 }}</span
+                  >
 
-          <div class="details hidden" id="{{ item.orderid }}">
-            <li class="products-header">
-              <p>Order Details</p>
-              <p>Price</p>
-              <p>Qty</p>
-              <p>Subtotal</p>
-            </li>
-            <li class="products" *ngFor="let cake of item.cakes">
-              <p class="cakename">
-                <img
-                  class="click-effect"
-                  [src]="cake.image"
-                  alt=""
-                  routerLink="/cakes/{{ cake.cakeid }}"
-                />
-                <span class="click-effect" routerLink="/cakes/{{ cake.cakeid }}"
-                  >{{ cake.name }}
-                  <p class="small-text">
-                    Weight:
-                    {{ cake.weight }}kg
-                  </p>
-                </span>
-              </p>
-              <p>₹{{ cake.price }}</p>
-              <p>{{ cake.quantity }}</p>
-              <p>₹{{ cake.price * cake.quantity }}</p>
-            </li>
-            <li class="products-header"></li>
-            <li class="products-header total">
-              <p>
-                <i class="fas fa-truck"></i>
-                {{
-                  !item.freeDelivery
-                    ? " Delivery Charge: ₹" + cs.deliveryCharge
-                    : "Free Delivery"
-                }}
-              </p>
-              <p></p>
-              <p>Total :</p>
-              <p class="total">
-                <span class="delivery-charge"> ₹ {{ item.subtotal }}</span>
-                <span class="delivery-charge">
-                  + ₹ {{ !item.freeDelivery ? cs.deliveryCharge : 0 }}</span
-                >
-
-                <span class="total-price"> ₹ {{ item.price }} </span>
-              </p>
-            </li>
+                  <span class="total-price"> ₹ {{ item.price }} </span>
+                </p>
+              </li>
+            </div>
           </div>
         </div>
         <li class="products-header"></li>

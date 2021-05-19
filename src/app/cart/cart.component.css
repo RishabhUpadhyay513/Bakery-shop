@@ -21,7 +21,7 @@ h1 {
 }
 .cart .cart-products {
   width: 100%;
-  background: rgba(240, 248, 255, 0.568);
+  background: rgb(240, 248, 255);
   border-radius: 10px;
 }
 .cart .cart-main {

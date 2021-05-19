@@ -84,7 +84,7 @@ export class CartComponent implements T {
     // bootbox.alert('Hello world!', function () {
     //   console.log('Alert Callback');
     // });
-    return confirm('Are you sure you want to checkout?');
+    return true;
   }
 
   public openConfirmationDialog() {

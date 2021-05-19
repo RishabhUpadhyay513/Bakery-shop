@@ -130,7 +130,7 @@ export const cakeList = [
 ];
 
 export const sliderImgs = [
-  'https://images.freekaamaal.com/store_desc_images/1526558623.jpg',
+  'https://nepaleasyshopping.com/public/images/advertise/1598374548_cake%204.jpg',
   'https://i1.wp.com/www.frugalfeeds.com.au/wp-content/uploads/2016/06/Lindt-Lava-Cake.png',
   'https://www.frugalfeeds.nz/wp-content/uploads/2018/09/Burger-King-Molten-Lava-Cake.png',
 ];

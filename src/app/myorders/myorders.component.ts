@@ -44,7 +44,7 @@ export class MyordersComponent implements OnInit {
               .padStart(2, '0')}/${(orddate.getMonth() + 1)
               .toString(10)
               .padStart(2, '0')}/${orddate.getFullYear()}`;
-
+            e.timeS = orddate.getTime();
             let totalPrice = 0;
             e.cakes.forEach((e: any) => {
               totalPrice += e.price * e.quantity;
@@ -57,6 +57,7 @@ export class MyordersComponent implements OnInit {
               e.subtotal = e.price - this.cs.deliveryCharge;
             }
           });
+          this.cartItems.sort((a: any, b: any) => b.timeS - a.timeS);
 
           return;
         }

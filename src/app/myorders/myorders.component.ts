@@ -32,8 +32,8 @@ export class MyordersComponent implements OnInit {
     this.http.post(this.cs.apiUrl + 'cakeorders', {}).subscribe(
       (res: any) => {
         // console.log(res);
+        this.loading = false;
         if (res.cakeorders) {
-          this.loading = false;
           console.log(res.cakeorders);
           this.cartItems = res.cakeorders;
           this.cartItems.forEach((e: any) => {
@@ -61,7 +61,7 @@ export class MyordersComponent implements OnInit {
           return;
         }
         // console.log(res.message);
-        this.toastr.warning(res.message);
+        // this.toastr.warning(res.message);
       },
       (err: any) => {
         console.log(err);

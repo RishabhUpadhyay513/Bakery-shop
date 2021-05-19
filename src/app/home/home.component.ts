@@ -10,7 +10,12 @@ import { UserListService } from '../user-list.service';
 export class HomeComponent implements OnInit {
   cakeList: any;
   loading: any = true;
-  
+  name: any = localStorage.loginUser
+    ? JSON.parse(localStorage.loginUser).name.replace(
+        JSON.parse(localStorage.loginUser).name[0],
+        JSON.parse(localStorage.loginUser).name[0].toUpperCase()
+      )
+    : '';
   constructor(public cs: UserListService, private http: HttpClient) {}
 
   ngDoCheck() {}

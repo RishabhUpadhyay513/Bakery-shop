@@ -15,13 +15,13 @@
       />
       <div class="filter-container" *ngIf="!adminUser">
         <button type="button" class="btn btn-warning" (click)="filter('lth')">
-          <span class="fas fa-sort-amount-down-alt"></span> Low to High
+          Low to High <span class="fas fa-sort-amount-down-alt"></span>
         </button>
         <button type="button" class="btn btn-warning" (click)="filter('htl')">
-          <i class="fas fa-sort-amount-up-alt"></i> High to Low
+          High to Low<i class="fas fa-sort-amount-up-alt"></i>
         </button>
         <button type="button" class="btn btn-warning" (click)="filter('res')">
-          <i class="fas fa-undo"></i>Reset Filter
+          Reset Filter <i class="fas fa-undo"></i>
         </button>
       </div>
       <div class="filter-container small" *ngIf="!adminUser">

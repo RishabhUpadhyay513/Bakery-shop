@@ -2,7 +2,7 @@
   <app-cake-slider></app-cake-slider>
 </div>
 
-<!-- <app-search [cakeArr]="cs.cakeList"></app-search> -->
+<app-search [cakeArr]="cs.cakeList" *ngIf="cs.cakeList.length"></app-search>
 
 <!-- <div class="cake-list" *ngIf="!cs.cakeSearch.length">
   <app-card *ngFor="let cake of cakeList" [cake]="cake"></app-card>
@@ -25,7 +25,11 @@
   ></app-pagination>
 </div>
 <div class="model" *ngIf="cs.loading">
-  <h1>Welcome To Harshit's CakeHouse</h1>
+  <h1>
+    Welcome
+    <span>{{ name ? name : "" }}</span>
+    To Harshit's CakeHouse
+  </h1>
   <div class="lds-ellipsis">
     <div></div>
     <div></div>

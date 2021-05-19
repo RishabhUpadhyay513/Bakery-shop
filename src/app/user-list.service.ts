@@ -28,7 +28,7 @@ export class UserListService {
     this.cakeSearch = [...this.cakeList];
   }
   getCakeList() {
-    this.loading = true;
+    // this.loading = true;
     this.http.get(this.apiUrl + 'allcakes').subscribe(
       (res: any) => {
         this.loading = false;

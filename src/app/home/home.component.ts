@@ -11,10 +11,12 @@ export class HomeComponent implements OnInit {
   cakeList: any;
   loading: any = true;
   name: any = localStorage.loginUser
-    ? JSON.parse(localStorage.loginUser).name.replace(
-        JSON.parse(localStorage.loginUser).name[0],
-        JSON.parse(localStorage.loginUser).name[0].toUpperCase()
-      )
+    ? JSON.parse(localStorage.loginUser)
+        .name.replace(
+          JSON.parse(localStorage.loginUser).name[0],
+          JSON.parse(localStorage.loginUser).name[0].toUpperCase()
+        )
+        .split(' ')[0]
     : '';
   constructor(public cs: UserListService, private http: HttpClient) {}
 

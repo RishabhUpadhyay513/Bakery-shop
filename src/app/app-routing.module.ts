@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './address/address.component';
 import { CakeDetailsComponent } from './cake-details/cake-details.component';
 import { CartComponent } from './cart/cart.component';
+import { ItemsresolverService } from './cart/itemsresolver.service';
 import { CheckoutmeComponent } from './checkoutme/checkoutme.component';
 import { ConfirmationGaurdService } from './confirmation-gaurd.service';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
     component: CartComponent,
     canActivate: [GuardRouteService],
     canDeactivate: [ConfirmationGaurdService],
+    resolve: [ItemsresolverService],
   },
   {
     path: 'myorders',

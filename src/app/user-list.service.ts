@@ -23,7 +23,7 @@ export class UserListService {
 
   constructor(private http: HttpClient, private toastr: ToastrService) {
     this.validatelogin();
-    this.getCakeList();
+    
   }
 
   validatelogin() {

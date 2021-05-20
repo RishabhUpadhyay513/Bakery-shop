@@ -18,7 +18,9 @@ export class HomeComponent implements OnInit {
         )
         .split(' ')[0]
     : '';
-  constructor(public cs: UserListService, private http: HttpClient) {}
+  constructor(public cs: UserListService, private http: HttpClient) {
+    this.cs.getCakeList();
+  }
 
   ngDoCheck() {}
   ngOnInit(): void {}

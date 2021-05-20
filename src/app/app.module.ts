@@ -42,6 +42,7 @@ import { ConfirmationGaurdService } from './confirmation-gaurd.service';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { DiscountPipe } from './discount.pipe';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
     AddressComponent,
     PayComponent,
     ConfirmationDialogComponent,
+    DiscountPipe,
   ],
   imports: [
     BrowserModule,

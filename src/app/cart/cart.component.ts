@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserListService } from '../user-list.service';
 import { T } from '../confirmation-gaurd.service';
 import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 // import {bootbox} from 'bootbox';
 
 @Component({
@@ -15,23 +16,29 @@ export class CartComponent implements T {
   qty: any = 1;
 
   deliveryCharge: any = 0;
-  cartItems: any = [];
+  public cartItems: any = [];
   loading: any = true;
   totalPrice: any = 0;
   constructor(
     private toastr: ToastrService,
     private cs: UserListService,
     private http: HttpClient,
+    private routes: ActivatedRoute,
     private confirmationDialogService: ConfirmationDialogService
   ) {
-    this.getCartItems();
+    this.routes.data.subscribe((data) => {
+      this.cartItems = data[0].data;
+      this.loading = false;
+      console.log(this.cartItems);
+    });
+    // this.getCartItems();
   }
 
   getCartItems() {
     this.http.post(this.cs.apiUrl + 'cakecart', {}).subscribe(
       (res: any) => {
+        this.loading = false;
         if (res.data) {
-          this.loading = false;
           return (this.cartItems = res.data);
         }
         // console.log(res.message);

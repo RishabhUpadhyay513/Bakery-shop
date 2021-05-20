@@ -11,9 +11,7 @@ body {
   --form-bg-color: #2b2a2af5;
   --form-color: #fff;
 }
-.cart .cart-products {
-  border: 1px solid #000 !important;
-}
+
 .btn-custom {
   background: #00a1ff;
   margin: 5px;

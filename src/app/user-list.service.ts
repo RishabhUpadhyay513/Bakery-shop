@@ -22,7 +22,19 @@ export class UserListService {
   apiUrl: any = 'https://apifromashu.herokuapp.com/api/';
 
   constructor(private http: HttpClient, private toastr: ToastrService) {
+    this.validatelogin();
     this.getCakeList();
+  }
+
+  validatelogin() {
+    this.http.get(this.apiUrl + 'getuserdetails').subscribe(
+      (res: any) => {
+        if (res.ok === false) localStorage.removeItem('loginUser');
+      },
+      (err: any) => {
+        if (err.ok === false) localStorage.removeItem('loginUser');
+      }
+    );
   }
   getcakes() {
     this.cakeSearch = [...this.cakeList];

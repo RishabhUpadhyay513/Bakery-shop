@@ -67,7 +67,7 @@
               <p class="small-text">Weight: {{ item.weight }} kg</p>
             </span>
           </p>
-          <p>₹ {{ item.price }}</p>
+          <p>{{ item.price | currency: "INR" }}</p>
           <p>
             <input
               type="number"
@@ -76,7 +76,7 @@
               disabled
             />
           </p>
-          <p>₹ {{ item.quantity * item.price }}</p>
+          <p>{{ item.quantity * item.price | currency: "INR" }}</p>
         </li>
         <li class="products-header"></li>
         <li class="products-header total">
@@ -91,11 +91,19 @@
           <p></p>
           <p>Total :</p>
           <p class="total">
-            <span class="delivery-charge"> ₹ {{ totalPrice }}</span>
-            <span class="delivery-charge"> + ₹ {{ deliveryCharge }}</span>
+            <span class="delivery-charge">
+              {{ totalPrice | currency: "INR" }}</span
+            >
+            <span class="delivery-charge">
+              + {{ deliveryCharge | currency: "INR" }}</span
+            >
 
             <span class="total-price">
-              ₹ {{ totalPrice ? totalPrice + deliveryCharge : totalPrice }}
+              {{
+                totalPrice
+                  ? totalPrice + deliveryCharge
+                  : (totalPrice | currency: "INR")
+              }}
             </span>
           </p>
         </li>

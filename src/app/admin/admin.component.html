@@ -47,7 +47,7 @@
               ><p>{{ item.name }}</p>
             </span>
           </p>
-          <p>₹ {{ item.price | number: "1.0-1" }}</p>
+          <p>{{ item.price | currency: "INR" }}</p>
           <p>
             <button class="btn" routerLink="/admin/editcake/{{ item.cakeid }}">
               <i class="fas fa-edit"></i>

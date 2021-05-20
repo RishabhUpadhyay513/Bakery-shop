@@ -92,7 +92,7 @@
                 </p>
                 <p class="center">{{ item.orderid }}</p>
                 <p class="center">{{ item.mode }}</p>
-                <p class="center">₹ {{ item.price }}</p>
+                <p class="center"> {{ item.price | currency: "INR" }}</p>
               </li>
             </a>
           </p>
@@ -122,9 +122,9 @@
                     </p>
                   </span>
                 </p>
-                <p>₹{{ cake.price }}</p>
+                <p>{{ cake.price | currency: "INR" }}</p>
                 <p>{{ cake.quantity }}</p>
-                <p>₹{{ cake.price * cake.quantity }}</p>
+                <p>{{ cake.price * cake.quantity | currency: "INR" }}</p>
               </li>
               <li class="products-header"></li>
               <li class="products-header total">
@@ -139,12 +139,21 @@
                 <p></p>
                 <p>Total :</p>
                 <p class="total">
-                  <span class="delivery-charge"> ₹ {{ item.subtotal }}</span>
                   <span class="delivery-charge">
-                    + ₹ {{ !item.freeDelivery ? cs.deliveryCharge : 0 }}</span
+                    {{ item.subtotal | currency: "INR" }}</span
+                  >
+                  <span class="delivery-charge">
+                    +
+                    {{
+                      !item.freeDelivery
+                        ? cs.deliveryCharge
+                        : (0 | currency: "INR")
+                    }}</span
                   >
 
-                  <span class="total-price"> ₹ {{ item.price }} </span>
+                  <span class="total-price">
+                    {{ item.price | currency: "INR" }}
+                  </span>
                 </p>
               </li>
             </div>

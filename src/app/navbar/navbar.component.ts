@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { UserListService } from '../user-list.service';
 
 @Component({
@@ -11,8 +19,36 @@ import { UserListService } from '../user-list.service';
 export class NavbarComponent implements OnInit {
   searchQ: any;
   userLogin: any = false;
+  loading: any = false;
   useremail: any;
-  constructor(private router: Router, private toastr: ToastrService) {}
+  constructor(
+    private router: Router,
+    private toastr: ToastrService,
+    private ngxloader: NgxUiLoaderService
+  ) {
+    this.router.events.subscribe((event: Event) => {
+      const e: any = { ...event };
+      if (e.url === '/cart' || e.url === '/myorders')
+        switch (true) {
+          case event instanceof NavigationStart: {
+            this.ngxloader.start();
+
+            break;
+          }
+
+          case event instanceof NavigationEnd:
+          case event instanceof NavigationCancel:
+          case event instanceof NavigationError: {
+            this.ngxloader.stop();
+
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+    });
+  }
 
   search() {
     if (this.searchQ)

@@ -25,7 +25,7 @@
         <a class="page-link">{{ currentp - 1 }}</a>
       </span>
     </li>
-    <li class="page-item active" *ngIf="currentp !== 1 && currentp !== 9">
+    <li class="page-item active" *ngIf="currentp > 1 && currentp !== noOfpages">
       <span (click)="showPage(currentp)" class="click-effect">
         <a class="page-link">{{ currentp }}</a>
       </span>

@@ -11,7 +11,9 @@ import { GuardRouteService } from './guard-route.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MyordersComponent } from './myorders/myorders.component';
+import { OrdersresolverService } from './myorders/ordersresolver.service';
 import { OrdsummaryComponent } from './ordsummary/ordsummary.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { PayComponent } from './pay/pay.component';
 import { SearchResultsDisComponent } from './search-results-dis/search-results-dis.component';
 import { SignupComponent } from './signup/signup.component';
@@ -46,6 +48,7 @@ const routes: Routes = [
     path: 'myorders',
     component: MyordersComponent,
     canActivate: [GuardRouteService],
+    resolve: [OrdersresolverService],
   },
   {
     path: 'checkout',
@@ -60,6 +63,7 @@ const routes: Routes = [
       import('./admin/admin.module').then((m) => m.AdminModule),
     canActivate: [GuardRouteService],
   },
+  { path: '**', component: PagenotfoundComponent },
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserListService } from '../user-list.service';
 
@@ -18,9 +19,14 @@ export class MyordersComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     public cs: UserListService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: ActivatedRoute
   ) {
-    this.getCartItems();
+    router.data.subscribe((res) => {
+      this.loading = false;
+      this.cartItems = res[0].cakeorders;
+      this.getOrders();
+    });
   }
   showOrderDetails(ordid: any) {
     // console.log(ordid);
@@ -28,13 +34,36 @@ export class MyordersComponent implements OnInit {
     el?.classList.toggle('hidden');
   }
 
+  getOrders() {
+    this.cartItems.forEach((e: any) => {
+      const orddate = new Date(e.orderdate);
+      e.orderdate = `${orddate.getDate().toString(10).padStart(2, '0')}/${(
+        orddate.getMonth() + 1
+      )
+        .toString(10)
+        .padStart(2, '0')}/${orddate.getFullYear()}`;
+      e.timeS = orddate.getTime();
+      let totalPrice = 0;
+      e.cakes.forEach((e: any) => {
+        totalPrice += e.price * e.quantity;
+      });
+      if (totalPrice >= 500) {
+        e.freeDelivery = true;
+        e.subtotal = e.price;
+      } else {
+        e.freeDelivery = false;
+        e.subtotal = e.price - this.cs.deliveryCharge;
+      }
+    });
+    this.cartItems.sort((a: any, b: any) => b.timeS - a.timeS);
+  }
   getCartItems() {
     this.http.post(this.cs.apiUrl + 'cakeorders', {}).subscribe(
       (res: any) => {
         // console.log(res);
         this.loading = false;
         if (res.cakeorders) {
-          console.log(res.cakeorders);
+          // console.log(res.cakeorders);
           this.cartItems = res.cakeorders;
           this.cartItems.forEach((e: any) => {
             const orddate = new Date(e.orderdate);

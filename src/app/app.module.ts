@@ -43,6 +43,36 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { DiscountPipe } from './discount.pipe';
+import {
+  NgxUiLoaderModule,
+  NgxUiLoaderConfig,
+  SPINNER,
+  POSITION,
+  PB_DIRECTION,
+} from 'ngx-ui-loader';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTableModule } from '@angular/material/table';
+import { TableComponent } from './table/table.component';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsColor: '#fff',
+  bgsPosition: POSITION.bottomCenter,
+  bgsSize: 4,
+  fgsColor: '#f4ac32',
+  pbColor: '#f4ac32',
+  bgsType: SPINNER.ballSpinClockwise, // background spinner type
+  fgsType: SPINNER.ballSpin, // foreground spinner type
+  pbDirection: PB_DIRECTION.leftToRight, // progress bar direction
+  pbThickness: 4, // progress bar thickness
+};
 
 @NgModule({
   declarations: [
@@ -78,13 +108,22 @@ import { DiscountPipe } from './discount.pipe';
     PayComponent,
     ConfirmationDialogComponent,
     DiscountPipe,
+    TableComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
     FormsModule,
+    MatPaginatorModule,
     HttpClientModule,
-
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
@@ -92,8 +131,15 @@ import { DiscountPipe } from './discount.pipe';
       positionClass: 'toast-top-left',
       preventDuplicates: true,
       enableHtml: true,
-    }),
-    NgbModule, // ToastrModule added
+    }), // ToastrModule added
+    NgbModule,
+    MatSliderModule,
+  ],
+  exports: [
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
   ],
   providers: [
     {

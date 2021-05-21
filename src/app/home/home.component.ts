@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
       );
     // this.cs.getcakes();
     if (q === 'res') this.cs.reset();
+
+    this.cs.currentp = 1;
   }
 
   ngDoCheck() {}

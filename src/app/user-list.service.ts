@@ -15,6 +15,7 @@ export class UserListService {
   deliveryCharge: any = 45;
   orderconfirm: any = false;
   order: any = {};
+  currentp: any = 1;
   loading: any = true;
   payment: any = false;
   userData: any = users;

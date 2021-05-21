@@ -1,55 +1,58 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item {{ currentp === 1 ? 'disabled' : '' }}">
+    <li class="page-item {{ cs.currentp === 1 ? 'disabled' : '' }}">
       <a
         class="page-link click-effect"
-        (click)="showPage(currentp - 1)"
+        (click)="showPage(cs.currentp - 1)"
         tabindex="-1"
         aria-disabled="true"
         >Previous</a
       >
     </li>
 
-    <li class="page-item  {{ currentp === 1 ? 'active' : '' }}">
+    <li class="page-item  {{ cs.currentp === 1 ? 'active' : '' }}">
       <span (click)="showPage(1)" class="click-effect">
         <a class="page-link">1</a>
       </span>
     </li>
     <li class="page-item disabled">
-      <span *ngIf="currentp >= 3">
+      <span *ngIf="cs.currentp >= 3">
         <a class="page-link">...</a>
       </span>
     </li>
-    <li class="page-item" *ngIf="currentp - 1 > 1">
-      <span (click)="showPage(currentp - 1)" class="click-effect">
-        <a class="page-link">{{ currentp - 1 }}</a>
+    <li class="page-item" *ngIf="cs.currentp - 1 > 1">
+      <span (click)="showPage(cs.currentp - 1)" class="click-effect">
+        <a class="page-link">{{ cs.currentp - 1 }}</a>
       </span>
     </li>
-    <li class="page-item active" *ngIf="currentp > 1 && currentp !== noOfpages">
-      <span (click)="showPage(currentp)" class="click-effect">
-        <a class="page-link">{{ currentp }}</a>
+    <li
+      class="page-item active"
+      *ngIf="cs.currentp > 1 && cs.currentp !== noOfpages"
+    >
+      <span (click)="showPage(cs.currentp)" class="click-effect">
+        <a class="page-link">{{ cs.currentp }}</a>
       </span>
     </li>
-    <li class="page-item" *ngIf="currentp + 1 < noOfpages">
-      <span (click)="showPage(currentp + 1)" class="click-effect">
-        <a class="page-link">{{ currentp + 1 }}</a>
+    <li class="page-item" *ngIf="cs.currentp + 1 < noOfpages">
+      <span (click)="showPage(cs.currentp + 1)" class="click-effect">
+        <a class="page-link">{{ cs.currentp + 1 }}</a>
       </span>
     </li>
-    <li class="page-item disabled" *ngIf="currentp < noOfpages - 2">
+    <li class="page-item disabled" *ngIf="cs.currentp < noOfpages - 2">
       <span>
         <a class="page-link">...</a>
       </span>
     </li>
     <li
       *ngIf="noOfpages > 1"
-      class="page-item {{ currentp === noOfpages ? 'active' : '' }}"
+      class="page-item {{ cs.currentp === noOfpages ? 'active' : '' }}"
     >
       <span class="click-effect" (click)="showPage(noOfpages)">
         <a class="page-link">{{ noOfpages }}</a>
       </span>
     </li>
-    <li class="page-item {{ currentp === noOfpages ? 'disabled' : '' }}">
-      <a class="page-link click-effect" (click)="showPage(+currentp + 1)"
+    <li class="page-item {{ cs.currentp === noOfpages ? 'disabled' : '' }}">
+      <a class="page-link click-effect" (click)="showPage(+cs.currentp + 1)"
         >Next</a
       >
     </li>

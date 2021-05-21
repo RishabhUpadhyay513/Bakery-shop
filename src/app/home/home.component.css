@@ -7,11 +7,11 @@
   border-radius: 10px;
   padding: 3%;
   /* margin: 1%; */
-  margin: 100px 1%;
+  margin: 40px 1%;
 }
 .price-filter {
   position: absolute;
-  top: -3%;
+  top: -1%;
   right: 5%;
   z-index: 2;
 }
@@ -46,6 +46,7 @@
 .btn-secondary .fa-funnel-dollar {
   color: blueviolet;
   font-size: 20px;
+  /* font-weight: 300; */
   margin-right: 5px;
 }
 .dropdown-menu a {

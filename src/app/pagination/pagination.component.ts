@@ -9,7 +9,6 @@ import { UserListService } from '../user-list.service';
   styleUrls: ['./pagination.component.css'],
 })
 export class PaginationComponent implements OnInit {
-  currentp: any = 1;
   noOfpages: any;
   paginationArr: any;
   @Input() cakesArr: any = [];
@@ -19,19 +18,19 @@ export class PaginationComponent implements OnInit {
   end: any;
   resultPerPage: any = 12;
   constructor(
-    private cs: UserListService,
+    public cs: UserListService,
     private admin: AdminService,
     private router: Router
   ) {
     this.pagination();
   }
   showPage(page: any) {
-    this.currentp = page;
+    this.cs.currentp = page;
   }
   pagination() {
     this.noOfpages = Math.ceil(this.cakesArr.length / this.resultPerPage);
-    this.start = (this.currentp - 1) * this.resultPerPage;
-    this.end = this.currentp * this.resultPerPage;
+    this.start = (this.cs.currentp - 1) * this.resultPerPage;
+    this.end = this.cs.currentp * this.resultPerPage;
     // this.paginationArr = Array(this.noOfpages);
     // this.paginationArr = Array.from(this.paginationArr, (e, i) => i + 1);
     if (!this.adminUser) {

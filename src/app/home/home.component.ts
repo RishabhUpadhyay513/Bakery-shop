@@ -22,6 +22,20 @@ export class HomeComponent implements OnInit {
     this.cs.getCakeList();
   }
 
+  filter(q: any) {
+    if (q === 'htl')
+      this.cs.cakeSearch = this.cs.cakeList.sort(
+        (cake1: any, cake2: any) => cake2.price - cake1.price
+      );
+
+    if (q === 'lth')
+      this.cs.cakeSearch = this.cs.cakeList.sort(
+        (cake1: any, cake2: any) => cake1.price - cake2.price
+      );
+    // this.cs.getcakes();
+    if (q === 'res') this.cs.reset();
+  }
+
   ngDoCheck() {}
   ngOnInit(): void {}
 }

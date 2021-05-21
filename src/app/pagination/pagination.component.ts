@@ -32,8 +32,8 @@ export class PaginationComponent implements OnInit {
     this.noOfpages = Math.ceil(this.cakesArr.length / this.resultPerPage);
     this.start = (this.currentp - 1) * this.resultPerPage;
     this.end = this.currentp * this.resultPerPage;
-    this.paginationArr = Array(this.noOfpages);
-    this.paginationArr = Array.from(this.paginationArr, (e, i) => i + 1);
+    // this.paginationArr = Array(this.noOfpages);
+    // this.paginationArr = Array.from(this.paginationArr, (e, i) => i + 1);
     if (!this.adminUser) {
       this.cs.cakeSearch = [...this.cakesArr].slice(this.start, this.end);
       return;
@@ -42,10 +42,10 @@ export class PaginationComponent implements OnInit {
   }
 
   ngDoCheck() {
-    this.pagination();
+    // this.pagination();
     setTimeout(() => {
       this.pagination();
-    }, 100);
+    }, 10);
   }
   ngOnInit(): void {
     // this.pagination();

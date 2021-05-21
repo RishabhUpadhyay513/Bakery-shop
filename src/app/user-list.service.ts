@@ -23,7 +23,6 @@ export class UserListService {
 
   constructor(private http: HttpClient, private toastr: ToastrService) {
     this.validatelogin();
-    
   }
 
   validatelogin() {
@@ -38,6 +37,9 @@ export class UserListService {
   }
   getcakes() {
     this.cakeSearch = [...this.cakeList];
+  }
+  reset() {
+    this.cakeList = [...this.paginationArr];
   }
   getCakeList() {
     // this.loading = true;

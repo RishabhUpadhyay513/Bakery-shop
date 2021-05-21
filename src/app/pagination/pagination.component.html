@@ -48,11 +48,7 @@
         <a class="page-link">{{ noOfpages }}</a>
       </span>
     </li>
-    <li
-      class="page-item {{
-        currentp === paginationArr.length ? 'disabled' : ''
-      }}"
-    >
+    <li class="page-item {{ currentp === noOfpages ? 'disabled' : '' }}">
       <a class="page-link click-effect" (click)="showPage(+currentp + 1)"
         >Next</a
       >

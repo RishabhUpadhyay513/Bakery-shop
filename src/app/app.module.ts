@@ -1,66 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { CardComponent } from './card/card.component';
-import { ForgetPasswordComponent } from './forget-password/forget-password.component';
-import { AdditemComponent } from './additem/additem.component';
-import { AddUserComponent } from './add-user/add-user.component';
-import { UserListComponent } from './user-list/user-list.component';
-
-import { CakeSliderComponent } from './cake-slider/cake-slider.component';
-import { SearchComponent } from './search/search.component';
-import { SearchCakeDirective } from './search-cake.directive';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  NgxUiLoaderConfig,
+  NgxUiLoaderModule,
+  PB_DIRECTION,
+  POSITION,
+  SPINNER,
+} from 'ngx-ui-loader';
+import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
+import { CarouselComponent } from './carousel/carousel.component';
 import { HomeComponent } from './home/home.component';
-import { SearchResultsDisComponent } from './search-results-dis/search-results-dis.component';
-import { CakeDetailsComponent } from './cake-details/cake-details.component';
-import { FilterComponent } from './filter/filter.component';
+import { CakecardComponent } from './cakecard/cakecard.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PaginationComponent } from './pagination/pagination.component';
+import { CakeDetailsComponent } from './cake-details/cake-details.component';
+import { SearchresultsComponent } from './searchresults/searchresults.component';
+import { LoginComponent } from './login/login.component';
+import { ForgetpassComponent } from './forgetpass/forgetpass.component';
+import { SignupComponent } from './signup/signup.component';
+import { InterceptorService } from './auth/interceptor.service';
+import { CanactivateService } from './guards/canactivate.service';
 import { CartComponent } from './cart/cart.component';
-import { MyordersComponent } from './myorders/myorders.component';
-import { AuthinterceptorService } from './authinterceptor.service';
+import { OrdersComponent } from './orders/orders.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
-import { EditformComponent } from './editform/editform.component';
-import { AddproductsComponent } from './addproducts/addproducts.component';
-import { OrdsummaryComponent } from './ordsummary/ordsummary.component';
-import { CheckoutmeComponent } from './checkoutme/checkoutme.component';
-import { AddressComponent } from './address/address.component';
-import { PayComponent } from './pay/pay.component';
-import { GuardRouteService } from './guard-route.service';
-import { ConfirmationGaurdService } from './confirmation-gaurd.service';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
-import { DiscountPipe } from './discount.pipe';
-import {
-  NgxUiLoaderModule,
-  NgxUiLoaderConfig,
-  SPINNER,
-  POSITION,
-  PB_DIRECTION,
-} from 'ngx-ui-loader';
-
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatTableModule } from '@angular/material/table';
-import { TableComponent } from './table/table.component';
-import { MatRippleModule } from '@angular/material/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ShopCakesComponent } from './shop-cakes/shop-cakes.component';
+import { GtagModule } from 'angular-gtag';
+import { PaginationAdminComponent } from './pagination-admin/pagination-admin.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#fff',
@@ -77,81 +50,49 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-
     NavbarComponent,
-    LoginComponent,
-    SignupComponent,
-    CardComponent,
-    ForgetPasswordComponent,
-    AdditemComponent,
-    AddUserComponent,
-    UserListComponent,
-
-    CakeSliderComponent,
-
-    SearchComponent,
-    SearchCakeDirective,
+    CarouselComponent,
     HomeComponent,
-    SearchResultsDisComponent,
-    CakeDetailsComponent,
-    FilterComponent,
+    CakecardComponent,
     PaginationComponent,
+    CakeDetailsComponent,
+    SearchresultsComponent,
+    LoginComponent,
+    ForgetpassComponent,
+    SignupComponent,
     CartComponent,
-    MyordersComponent,
+    OrdersComponent,
     CheckoutComponent,
     AdminComponent,
-    EditformComponent,
-    AddproductsComponent,
-    OrdsummaryComponent,
-    CheckoutmeComponent,
-    AddressComponent,
-    PayComponent,
-    ConfirmationDialogComponent,
-    DiscountPipe,
-    TableComponent,
-    PagenotfoundComponent,
+    ShopCakesComponent,
+    PaginationAdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRippleModule,
-    FormsModule,
-    MatPaginatorModule,
-    HttpClientModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     CommonModule,
+    FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-left',
       preventDuplicates: true,
       enableHtml: true,
-    }), // ToastrModule added
-    NgbModule,
-    MatSliderModule,
-  ],
-  exports: [
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRippleModule,
+    }),
+    BrowserModule,
+
+    // Import NgxUiLoaderModule
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthinterceptorService,
+      useClass: InterceptorService,
       multi: true,
     },
-    GuardRouteService,
-    ConfirmationGaurdService,
-    ConfirmationDialogService,
+    CanactivateService,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent],
 })
 export class AppModule {}

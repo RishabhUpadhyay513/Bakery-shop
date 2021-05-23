@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoginServiceService } from '../login-service.service';
-import { UserListService } from '../user-list.service';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,23 +10,26 @@ import { UserListService } from '../user-list.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
+  // object to store the user data using ngModel
   user: any = {};
-  message: any;
+
   constructor(
-    private ls: LoginServiceService,
+    private ls: CommonService,
     private http: HttpClient,
     private route: Router,
-    private toastr: ToastrService,
-    private cs: UserListService
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
+
   signUp() {
+    // validate email id
     if (!this.ls.validateEmail(this.user.email)) {
       this.toastr.warning('PLease Enter the Correct Email Id.');
       return;
     }
 
+    // validate all input fileds
     if (
       !this.user.name ||
       !this.user.name.trim() ||
@@ -38,28 +40,34 @@ export class SignupComponent implements OnInit {
       return;
     }
 
+    // validate name & password input field
     if (this.user.name.startsWith(' ') || this.user.password.startsWith(' ')) {
       this.toastr.warning('User name/password should not start with space.');
       return;
     }
 
-    const apiUrl = this.cs.apiUrl + 'register';
-    this.http.post(apiUrl, this.user).subscribe(
+    // hit post request to signup user
+    this.http.post(this.ls.apiUrl + 'register', this.user).subscribe(
       (res: any) => {
-        this.message = res.message;
-        if (this.message === 'User Already Exists') {
-          this.toastr.success(`${this.message}. Redirecting to Login Page.`);
-          setTimeout(() => {
-            this.route.navigate(['/login'], {
-              queryParams: { q: this.user.email },
-            });
-          }, 2000);
+        // check whether user already exists or not
+        if (res.message === 'User Already Exists') {
+          this.toastr.info(`${res.message}. Redirecting to Login Page.`);
+        } else {
+          this.toastr.success(res.message);
         }
+
+        // redirecting user to the login page
+        setTimeout(() => {
+          this.route.navigate(['/login'], {
+            queryParams: { q: this.user.email },
+          });
+        }, 2000);
       },
       (err: any) => {
+        // display error message
         console.log(err);
-        this.message = err.message;
-        this.toastr.error(this.message);
+
+        this.toastr.error(err.message);
       }
     );
   }

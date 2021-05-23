@@ -1,10 +1,12 @@
 <div class="cake-details-Container">
+  <!-- ul to show the loading message -->
   <ul class="cart-products-list flex" *ngIf="!dataloaded">
     <p>
       <img class="loading" src="https://i.stack.imgur.com/hzk6C.gif" alt="" />
       Cake Details...
     </p>
   </ul>
+  <!-- div to show the cake details -->
   <div class="cake-data small-screen" *ngIf="dataloaded">
     <div class="cake-description">
       <h1>{{ cake.name }}</h1>
@@ -96,7 +98,7 @@
           <p class="flavour highlight">
             <span class="heading">Flavour :</span> {{ cake.flavour }}
           </p>
-          <p class="type"><span>Type :</span> {{ cake.type }}</p>
+          <p class="type"><span>Occasion :</span> {{ cake.type }}</p>
         </div>
       </div>
 

@@ -69,12 +69,7 @@
           </p>
           <p>{{ item.price | currency: "INR" }}</p>
           <p>
-            <input
-              type="number"
-              [(ngModel)]="item.quantity"
-              (change)="qtyValidation($event)"
-              disabled
-            /><i
+            <input type="number" [(ngModel)]="item.quantity" disabled /><i
               (click)="remove(item.cakeid)"
               class="fas fa-trash click-effect"
             ></i>

@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { UserListService } from '../user-list.service';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-checkout',
@@ -10,85 +7,40 @@ import { UserListService } from '../user-list.service';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-  user: any = { price: 0 };
-  cartItems: any = [];
-
-  constructor(
-    private http: HttpClient,
-    private cs: UserListService,
-    private toastr: ToastrService,
-    private router: Router
-  ) {
-    this.getCartItems();
+  constructor(public cs: CommonService) {}
+  ngDoCheck() {
+    // check if the user entered name input field or not
+    if (!this.cs.order.name) {
+      // disable this payment option
+      this.cs.payment = false;
+    }
   }
 
-  ngOnInit(): void {}
-  getCartItems() {
-    this.http.post(this.cs.apiUrl + 'cakecart', {}).subscribe(
-      (res: any) => {
-        if (res.data) {
-          this.user.price += res.data.reduce(
-            (acc: any, item: any) => item.price * item.quantity + acc,
-            0
-          );
+  activate(e: any) {
+    // check if payment option is disable
+    if (!this.cs.payment) {
+      // select the closest a tag to the target
+      const el = e.target.closest('a');
 
-          if (this.user.price <= 0) this.router.navigate(['/']);
-          if (this.user.price < 500) this.user.price += this.cs.deliveryCharge;
+      // check if the a tag is disable
+      if (el.className.includes('a-disabled'))
+        return el.parentElement.classList.remove('active');
+    }
+    // check if order form is enable
+    if (this.cs.orderconfirm) {
+      // select the all li tag inside the navigation menu
+      const allli = e.target.closest('ul').querySelectorAll('li');
 
-          return (this.cartItems = res.data);
-        }
-        console.log(res.message);
-        this.toastr.warning(res.message);
-      },
-      (err: any) => {
-        console.log(err);
-        this.toastr.error(err.message);
-      }
-    );
+      // remove the active class from all the li tags
+      allli.forEach((e: any) => {
+        e.classList.remove('active');
+      });
+      //  add the active class the clicked li tag
+      e.target.closest('li').classList.add('active');
+    }
   }
-
-  placeOrder() {
-    if (
-      !this.user.name ||
-      !this.user.name.trim() ||
-      !this.user.address ||
-      !this.user.address.trim() ||
-      !this.user.city ||
-      !this.user.city.trim() ||
-      !this.user.pincode ||
-      !this.user.pincode.trim() ||
-      !this.user.phone ||
-      !this.user.phone.trim()
-    ) {
-      this.toastr.warning('Input Fields should not be empty');
-      return;
-    }
-
-    if (!this.cs.phonenumber(this.user.phone)) {
-      this.toastr.warning('Please Enter the vaild phone number');
-      return;
-    }
-    if (!this.cs.pincode(this.user.pincode)) {
-      this.toastr.warning('Please Enter the vaild Pincode');
-      return;
-    }
-
-    const orderObj = { ...this.user, cakes: this.cartItems };
-    console.log(orderObj);
-
-    this.http.post(this.cs.apiUrl + 'addcakeorder', orderObj).subscribe(
-      (res: any) => {
-        console.log(res);
-        if (res.messageg === 'order placed') {
-          this.toastr.success('Your Order Placed!!');
-          this.router.navigate(['/myorders']);
-          return;
-        }
-        this.toastr.warning(res.messageg);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+  ngOnInit(): void {
+    // select the all li tags and store it as a array
+    this.cs.ullist = Array.from(document.querySelectorAll('li'));
   }
 }

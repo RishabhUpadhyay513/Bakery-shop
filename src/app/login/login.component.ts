@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoginServiceService } from '../login-service.service';
-import { UserListService } from '../user-list.service';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +13,13 @@ export class LoginComponent implements OnInit {
   user: any = {};
 
   constructor(
-    private ls: LoginServiceService,
+    private ls: CommonService,
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private toastr: ToastrService,
-    private cs: UserListService
+    private toastr: ToastrService
   ) {
+    // check for query params
     if (this.route.snapshot.queryParams.q) {
       this.user.email = this.route.snapshot.queryParams.q;
     }
@@ -44,12 +43,15 @@ export class LoginComponent implements OnInit {
 
     // validate Email/password field if not empty
     if (this.ls.validateEmail(this.user.email)) {
-      const apiUrl = this.cs.apiUrl + 'login';
-      this.http.post(apiUrl, this.user).subscribe(
+      // hit post request to login user
+      this.http.post(this.ls.apiUrl + 'login', this.user).subscribe(
         (res: any) => {
+          // check if login is successful or not
           if (res.token) {
+            // storing login user data to localstorage
             localStorage.setItem('loginUser', JSON.stringify(res));
             this.toastr.success('Login Successfully!!');
+            // navigate user to home page
             this.router.navigate(['/']);
           } else {
             localStorage.removeItem('loginUser');
@@ -57,6 +59,7 @@ export class LoginComponent implements OnInit {
           }
         },
         (err) => {
+          // display the error message
           this.toastr.error(err.message);
         }
       );

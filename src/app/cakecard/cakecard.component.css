@@ -1,0 +1,28 @@
+.card img {
+  height: 60%;
+}
+.card {
+  display: flex;
+  margin: 10px;
+  transition: all 0.5s ease;
+  background: #eee;
+  border: 0.1px solid #6f4e37;
+  height: 25vw;
+  width: 20vw;
+  min-width: 200px;
+  min-height: 250px;
+}
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 2px 5px #6f4e37;
+  cursor: pointer;
+}
+.card span {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 90%;
+}
+h5 {
+  font-size: 20px;
+}

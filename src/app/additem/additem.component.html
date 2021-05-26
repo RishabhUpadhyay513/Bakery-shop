@@ -1,0 +1,79 @@
+<div class="additem-section">
+  <h1>AddItem</h1>
+  <form>
+    <div class="form-group">
+      <input
+        name="name"
+        type="text"
+        class="form-control"
+        placeholder="Enter Cake Name"
+        [(ngModel)]="cake.name"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        name="image"
+        type="file"
+        class="form-control"
+        [(ngModel)]="cake.image"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        name="price"
+        type="text"
+        placeholder="enter price"
+        class="form-control"
+        [(ngModel)]="cake.price"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        name="weight"
+        placeholder="Enter weight"
+        class="form-control"
+        [(ngModel)]="cake.weight"
+      />
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="gridCheck"
+          name="checkBox"
+          [(ngModel)]="cake.type"
+        />
+        <label class="form-check-label" for="gridCheck"> Eggless </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <select
+        name="category"
+        class="form-control"
+        id="FormControlSelect"
+        [(ngModel)]="cake.category"
+      >
+        <option>Categories</option>
+        <option>Black Forest</option>
+        <option>Vanilla</option>
+        <option>pineapple</option>
+        <option>Strawberry</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <textarea
+        class="form-control"
+        id="FormControlTextarea1"
+        rows="3"
+        name="description"
+        placeholder="Enter Description"
+        [(ngModel)]="cake.description"
+      ></textarea>
+    </div>
+    <button type="submit" (click)="addItem()" class="btn btn-primary">
+      Add Item
+    </button>
+  </form>
+</div>

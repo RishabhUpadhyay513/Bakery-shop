@@ -1,18 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { CommonService } from '../services/common.service';
+import { Component, OnInit } from '@angular/core';
+import { UserListService } from '../user-list.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-  // cake list to sort list of cakes
+export class HomeComponent implements OnInit {
   cakeList: any;
   loading: any = true;
-
-  // Storing the login user name
   name: any = localStorage.loginUser
     ? JSON.parse(localStorage.loginUser)
         .name.replace(
@@ -21,7 +18,7 @@ export class HomeComponent {
         )
         .split(' ')[0]
     : '';
-  constructor(public cs: CommonService, private http: HttpClient) {
+  constructor(public cs: UserListService, private http: HttpClient) {
     this.cs.getCakeList();
   }
 
@@ -40,4 +37,7 @@ export class HomeComponent {
 
     this.cs.currentp = 1;
   }
+
+  ngDoCheck() {}
+  ngOnInit(): void {}
 }

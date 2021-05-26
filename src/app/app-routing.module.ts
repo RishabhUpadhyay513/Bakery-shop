@@ -1,65 +1,69 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddressComponent } from './address/address.component';
 import { CakeDetailsComponent } from './cake-details/cake-details.component';
 import { CartComponent } from './cart/cart.component';
-import { ForgetpassComponent } from './forgetpass/forgetpass.component';
-import { CanactivateService } from './guards/canactivate.service';
+import { ItemsresolverService } from './cart/itemsresolver.service';
+import { CheckoutmeComponent } from './checkoutme/checkoutme.component';
+import { ConfirmationGaurdService } from './confirmation-gaurd.service';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { GuardRouteService } from './guard-route.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { OrdersComponent } from './orders/orders.component';
-import { CartService } from './resolvers/cart.service';
-import { OrdersService } from './resolvers/orders.service';
-import { SearchresultsComponent } from './searchresults/searchresults.component';
-import { ShopCakesComponent } from './shop-cakes/shop-cakes.component';
+import { MyordersComponent } from './myorders/myorders.component';
+import { OrdersresolverService } from './myorders/ordersresolver.service';
+import { OrdsummaryComponent } from './ordsummary/ordsummary.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { PayComponent } from './pay/pay.component';
+import { SearchResultsDisComponent } from './search-results-dis/search-results-dis.component';
 import { SignupComponent } from './signup/signup.component';
 
-// Set Routes here
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'cake/:id', component: CakeDetailsComponent },
-  { path: 'search', component: SearchresultsComponent },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [CanactivateService],
-  },
-  {
-    path: 'forgetPassword',
-    component: ForgetpassComponent,
-    canActivate: [CanactivateService],
+    canActivate: [GuardRouteService],
   },
   {
     path: 'signup',
     component: SignupComponent,
-    canActivate: [CanactivateService],
+    canActivate: [GuardRouteService],
   },
+  {
+    path: 'forgetPassword',
+    component: ForgetPasswordComponent,
+    canActivate: [GuardRouteService],
+  },
+  { path: 'search', component: SearchResultsDisComponent },
+  { path: 'cakes/:cakeId', component: CakeDetailsComponent },
   {
     path: 'cart',
     component: CartComponent,
-    canActivate: [CanactivateService],
-    resolve: [CartService],
+    canActivate: [GuardRouteService],
+    canDeactivate: [ConfirmationGaurdService],
+    resolve: [ItemsresolverService],
   },
   {
     path: 'myorders',
-    component: OrdersComponent,
-    canActivate: [CanactivateService],
-    resolve: [OrdersService],
+    component: MyordersComponent,
+    canActivate: [GuardRouteService],
+    resolve: [OrdersresolverService],
   },
   {
     path: 'checkout',
     loadChildren: () =>
-      import('./checkout/checkout.module').then((m) => m.CheckoutModule),
+      import('./checkoutme/checkoutme.module').then((m) => m.CheckoutmeModule),
 
-    canActivate: [CanactivateService],
+    canActivate: [GuardRouteService],
   },
   {
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
-    canActivate: [CanactivateService],
+    canActivate: [GuardRouteService],
   },
-  { path: 'shopNow', component: ShopCakesComponent },
-  // { path: '**', component: PagenotfoundComponent },
+  { path: '**', component: PagenotfoundComponent },
 ];
 
 @NgModule({

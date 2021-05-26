@@ -1,56 +1,27 @@
-.checkout {
-  display: grid;
-  grid-template-columns: 20% auto;
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  flex-direction: column;
+  background: var(--form-bg-color);
+  color: var(--form-color);
+  padding: 50px;
+  border: 0.5px solid black;
 }
-
-.sidebar {
-  position: sticky;
-  top: 30vh;
-  left: 0;
-  /* background: #eee; */
-  padding: 0;
-  margin: 0;
+.login-section form {
+  width: 70%;
 }
-.sidebar ul {
-  width: 20vw;
-
-  background: #eee;
-  position: fixed;
-  top: 30vh;
-  left: 1vw;
-
-  /* background: #eee; */
-  padding: 20px;
-  margin: 0;
-  border-radius: 20px;
-  border: 0.5px solid #333;
-}
-.sidebar li {
-  list-style: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+.login-section form input {
   margin: 20px 0;
-  background: rgb(212 196 250);
-  transition: all 0.5s ease;
-  border-bottom: 1px solid #000;
 }
-.sidebar li a {
-  padding: 25px 10px;
-  text-decoration: none;
-  color: #000;
+.login-section form button {
+  margin: 10px;
 }
-.sidebar li:active {
-  background: rgba(0, 0, 0, 0.466) !important;
-  color: #fff;
-}
-.a-disabled {
-  cursor: not-allowed;
-}
-.active {
-  background-color: #666 !important;
-  box-shadow: 2px 5px 10px #000;
-  transform: scale(1.03);
-}
-.active > a {
-  color: #fff !important;
+
+@media screen and (max-width: 800px) {
+  .login-section {
+    margin: 20px 2px;
+    padding: 2vw;
+  }
 }

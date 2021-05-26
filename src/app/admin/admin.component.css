@@ -125,18 +125,6 @@ app-search {
 .cart-right i {
   font-size: 25px;
 }
-.admin-search {
-  background: #fff;
-  border-radius: 15px;
-}
-.admin-search button {
-  padding: 0 5px;
-  border-radius: 0 15px 15px 0;
-}
-.admin-search input {
-  border: none;
-  border-radius: 15px 0 0 15px;
-}
 @media screen and (max-width: 840px) {
   * {
     font-size: 2vw;

@@ -2,6 +2,9 @@
   <h1>SignUp To Harshit's CakeHouse</h1>
   <form>
     <div class="form-group">
+      <label class="error">{{ message }}</label>
+    </div>
+    <div class="form-group">
       <label for="name">Name</label>
       <input
         type="text"
@@ -21,8 +24,8 @@
         [(ngModel)]="user.email"
       />
       <!-- <small id="emailHelp" class="form-text text-muted"
-          >We'll never share your email with anyone else.</small
-        > -->
+        >We'll never share your email with anyone else.</small
+      > -->
     </div>
     <div class="form-group">
       <label for="password">Password</label>
@@ -39,4 +42,33 @@
       SignUp
     </button>
   </form>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

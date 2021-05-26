@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AdminService } from '../services/admin.service';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,17 +10,16 @@ import { AdminService } from '../services/admin.service';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  // store the search query
-  searchquery: any;
-  // store the default sort status
-  sort: any = 'lth';
+  loading: any = true;
+  searchKey: any;
 
+  q: any = 'lth';
   constructor(
     private toastr: ToastrService,
     public admin: AdminService,
+    private http: HttpClient,
     private router: Router
   ) {
-    // check whether the user is admin or not
     if (
       !(
         JSON.parse(localStorage.loginUser).email === 'harshit199dubey@gmail.com'
@@ -29,42 +28,28 @@ export class AdminComponent implements OnInit {
       toastr.info('Only Admin User Can Access Admin Panel');
       router.navigate(['/']);
     }
-
-    // method call to get cake lists
-    this.admin.getCakeList();
   }
 
   ngOnInit(): void {}
-  ngDoCheck() {}
-  // method to perform search
-  search() {
-    // filter the cake list according the search query
-    if (this.searchquery) {
-      this.admin.cakeList = [...this.admin.cakes].filter((cake: any) =>
-        cake.name.toLowerCase().includes(this.searchquery.toLowerCase())
-      );
-    } else {
-      this.admin.cakeList = [...this.admin.cakes];
-    }
+  ngDoCheck() {
+    this.loading = this.admin.cakeList.length > 0 ? false : true;
   }
 
-  // method to sort cake list according to price
-  sortcake() {
-    // sort cake array from high to low price
-    if (this.sort === 'htl') {
-      this.admin.cakeSearch = this.admin.cakeList.sort(
+  filter() {
+    if (this.q === 'htl') {
+      this.admin.cakeSearch = this.admin.cakeSearch.sort(
         (cake1: any, cake2: any) => cake2.price - cake1.price
       );
-      this.sort = 'lth';
+      this.q = 'lth';
       return;
     }
-    // sort cake array from low to high  price
-    if (this.sort === 'lth') {
-      this.admin.cakeSearch = this.admin.cakeList.sort(
+    if (this.q === 'lth') {
+      this.admin.cakeSearch = this.admin.cakeSearch.sort(
         (cake1: any, cake2: any) => cake1.price - cake2.price
       );
-      this.sort = 'htl';
+      this.q = 'htl';
       return;
     }
+    // if (this.q === 'res') this.admin.cakeSearch = this.admin.cakeSearch;
   }
 }

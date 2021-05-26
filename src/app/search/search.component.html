@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <form class="d-flex">
+      <input
+        *ngIf="adminUser"
+        name="search"
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        [(ngModel)]="searchQuery"
+        appSearchCake
+        [searchKey]="searchQuery"
+        [userAdmin]="adminUser"
+      />
+      <div class="filter-container" *ngIf="!adminUser">
+        <button type="button" class="btn btn-warning" (click)="filter('lth')">
+          Low to High <span class="fas fa-sort-amount-down-alt"></span>
+        </button>
+        <button type="button" class="btn btn-warning" (click)="filter('htl')">
+          High to Low<i class="fas fa-sort-amount-up-alt"></i>
+        </button>
+        <button type="button" class="btn btn-warning" (click)="filter('res')">
+          Reset Filter <i class="fas fa-undo"></i>
+        </button>
+      </div>
+      <div class="filter-container small" *ngIf="!adminUser">
+        <button
+          type="button"
+          class="btn btn-warning"
+          (click)="filter('lth')"
+          title="price filter"
+        >
+          <span class="fas fa-sort-amount-down-alt"></span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          (click)="filter('htl')"
+          title="price filter"
+        >
+          <i class="fas fa-sort-amount-up-alt"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          (click)="filter('res')"
+          title="Clear Filter"
+        >
+          <i class="fas fa-undo"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</nav>

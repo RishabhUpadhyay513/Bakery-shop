@@ -1,9 +1,14 @@
-<!-- Added carousel Component here -->
-<div><app-carousel></app-carousel></div>
+<div>
+  <app-cake-slider></app-cake-slider>
+</div>
 
-<!-- Cake list div to render cake list -->
+<!-- <app-search [cakeArr]="cs.cakeList" *ngIf="cs.cakeList.length"></app-search> -->
+
+<!-- <div class="cake-list" *ngIf="!cs.cakeSearch.length">
+  <app-card *ngFor="let cake of cakeList" [cake]="cake"></app-card>
+</div> -->
+
 <div class="cake-list">
-  <!-- sort dropdown to sort according to price -->
   <div *ngFor="let cake of cs.cakeSearch" class="price-filter">
     <div class="dropdown">
       <a
@@ -17,7 +22,6 @@
         <i class="fas fa-funnel-dollar"></i>Sort
       </a>
 
-      <!-- dropdown menu -->
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <li>
           <a class="dropdown-item" (click)="filter('lth')"
@@ -37,26 +41,21 @@
       </ul>
     </div>
   </div>
-  <!-- cake card component  -->
-  <app-cakecard *ngFor="let cake of cs.cakeSearch" [cake]="cake"></app-cakecard>
+  <app-card *ngFor="let cake of cs.cakeSearch" [cake]="cake"></app-card>
 
-  <!-- when cake search array is empty -->
   <div *ngIf="cs.cakeSearch?.length === 0" class="no-query">
     <p>
       <img src="assets/404.png" alt="no-found" /><br />
       No Cake found.(404)!!
     </p>
   </div>
-
-  <!-- Added pagination component -->
   <app-pagination
     [cakesArr]="cs.cakeList"
+    [cakeList]="cakeList"
     class="w-100 m-2x"
     *ngIf="cs.cakeList.length"
   ></app-pagination>
 </div>
-
-<!-- Model to display welcome message -->
 <div class="model" *ngIf="cs.loading">
   <h1>
     Welcome

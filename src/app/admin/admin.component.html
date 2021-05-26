@@ -1,36 +1,30 @@
+<!-- <table mat-table [dataSource]="admin.cakeSearch">
+  <ng-container matColumnDef="score">
+    <th mat-header-cell *matHeaderCellDef>name</th>
+    <td mat-cell *matCellDef="let cake">{{ cake.name }}</td>
+  </ng-container>
+</table> -->
+<!-- <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
+</mat-form-field> -->
+
 <div class="admin flex">
   <header class="admin-header flex">
     <h1>Cakes</h1>
-    <!-- add cake button -->
+
     <div class="cart-right">
       <button class="btn btn-primary click-effect" routerLink="/admin/addcake">
         <i class="far fa-plus-square fs-2x"></i> Add Cake
       </button>
     </div>
   </header>
-  <div>
-    <form
-      action="#"
-      class="form-group flex admin-search"
-      (submit)="search()"
-      *ngIf="!admin.loading"
-    >
-      <input
-        type="search"
-        name="search"
-        class="form-control"
-        [(ngModel)]="searchquery"
-        placeholder="search.."
-      />
-      <button type="button" class="btn"><i class="fas fa-search"></i></button>
-    </form>
-  </div>
+  <app-search [cakeArr]="admin.cakeSearch" [adminUser]="true"></app-search>
 
   <main class="admin-main flex">
     <div class="admin-products flex">
-      <!-- cake data loading message -->
-      <ul class="admin-products-list flex" *ngIf="admin.loading">
-        <p *ngIf="admin.loading !== 'upldating'">
+      <ul class="admin-products-list flex" *ngIf="loading">
+        <p *ngIf="loading !== 'upldating'">
           <img
             class="loading"
             src="https://i.stack.imgur.com/hzk6C.gif"
@@ -39,27 +33,23 @@
           Cakes...
         </p>
       </ul>
-      <!-- no cake found message -->
       <ul
         class="admin-products-list flex"
-        *ngIf="!admin.loading && admin.cakeSearch.length === 0"
+        *ngIf="!loading && admin.cakeSearch.length === 0"
       >
-        <p class="notfound" *ngIf="admin.loading !== 'upldating'">
+        <p class="notfound" *ngIf="loading !== 'upldating'">
           <img class="loading" src="assets/notFound.png" alt="" />
           No Cake found !!! For your Search Query.
         </p>
       </ul>
-      <!-- cake list  -->
       <ul
         class="admin-products-list flex"
-        *ngIf="!admin.loading && admin.cakeSearch.length > 0"
+        *ngIf="!loading && admin.cakeSearch.length > 0"
       >
+        <!-- <app-adminsearch [cakearr]="cs.cakeList"></app-adminsearch> -->
         <li class="products-header">
           <p>Products</p>
-
-          <p (click)="sortcake()" class="price-filter">
-            Price <i class="fas fa-sort"></i>
-          </p>
+          <p (click)="filter()" class="price-filter">Price <i class="fas fa-sort"></i></p>
           <p>Action</p>
         </li>
         <li class="products" *ngFor="let item of admin.cakeSearch">
@@ -80,8 +70,13 @@
       </ul>
     </div>
   </main>
-  <app-pagination-admin
-    *ngIf="!admin.loading && admin.cakeSearch.length > 0"
+  <!-- <app-pagination
+    *ngIf="!loading && admin.cakeSearch.length > 0"
     [cakesArr]="admin.cakeList"
-  ></app-pagination-admin>
+    [adminUser]="true"
+  ></app-pagination> -->
 </div>
+
+<!-- <div class="edit">
+  <app-editform></app-editform>
+</div> -->

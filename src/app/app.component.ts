@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { CommonService } from './services/common.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +6,7 @@ import { CommonService } from './services/common.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'cakeHouse';
-  constructor(private cs: CommonService) {
-    cs.validatelogin();
-  }
- 
+  title = 'walkingTreeProject';
+
+  constructor() {}
 }

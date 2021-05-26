@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CommonService } from '../services/common.service';
+import { UserListService } from '../user-list.service';
+import { T } from '../confirmation-gaurd.service';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+import { ActivatedRoute } from '@angular/router';
+// import {bootbox} from 'bootbox';
 
 @Component({
   selector: 'app-cart',
@@ -18,11 +21,11 @@ export class CartComponent {
   totalPrice: any = 0;
   constructor(
     private toastr: ToastrService,
-    private cs: CommonService,
+    private cs: UserListService,
     private http: HttpClient,
-    private routes: ActivatedRoute
+    private routes: ActivatedRoute,
+    private confirmationDialogService: ConfirmationDialogService
   ) {
-    // fetch data from the route
     this.routes.data.subscribe((data) => {
       this.cartItems = data[0].data;
       this.loading = false;
@@ -31,49 +34,44 @@ export class CartComponent {
     // this.getCartItems();
   }
 
-  // method to get cart items
   getCartItems() {
-    // set loading status the false
-    this.loading = false;
-    // hit post request to get user cart items
     this.http.post(this.cs.apiUrl + 'cakecart', {}).subscribe(
       (res: any) => {
-        // check whether the item updated successful or not
+        this.loading = false;
         if (res.data) {
           return (this.cartItems = res.data);
         }
-
+        // console.log(res.message);
         this.toastr.warning(res.message);
       },
       (err: any) => {
-        // display the error message
         console.log(err);
         this.toastr.error(err.message);
       }
     );
   }
   ngDoCheck() {
-    // set the total price
     this.totalPrice = this.cartItems.reduce(
       (acc: any, item: any) => item.price * item.quantity + acc,
       0
     );
 
-    // check is total price is greater then minimum cart total price or not
-    if (this.totalPrice > this.cs.mincartvalue) this.deliveryCharge = 0;
+    if (this.totalPrice > 500) this.deliveryCharge = 0;
     else this.deliveryCharge = this.cs.deliveryCharge;
   }
 
-  ngOnInit(): void {}
+  qtyValidation(e: any) {
+    e = e.target;
+    if (e.value <= 0) e.value = 1;
+  }
 
-  // method to remove item from cart
+  ngOnInit(): void {}
   remove(id: any) {
-    // hit post request to remove item from cart
     this.http
       .post(this.cs.apiUrl + 'removecakefromcart', { cakeid: id })
       .subscribe(
         (res: any) => {
-          // check whether the item removed successful or not
+          // console.log(res);
           if (res.message === 'Removed  item from cart') {
             this.toastr.success(res.message);
             this.loading = 'upldating';
@@ -83,10 +81,20 @@ export class CartComponent {
           this.toastr.warning(res.message);
         },
         (err: any) => {
-          // display the error message
           console.log(err);
           this.toastr.error(err.message);
         }
+      );
+  }
+
+  public openConfirmationDialog() {
+    return this.confirmationDialogService
+      .confirm('Please confirm..', 'Do you really want to checkOut?')
+      .then((confirmed) => confirmed)
+      .catch(() =>
+        console.log(
+          'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
+        )
       );
   }
 }

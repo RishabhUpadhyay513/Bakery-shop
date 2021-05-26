@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "aa514fc7-9f61-4038-8577-3b49ec5b0c78"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cakeHouse": {
+    "walkingTreeProject": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,14 +20,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cakeHouse",
+            "outputPath": "dist/walkingTreeProject",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css", "node_modules/ngx-toastr/toastr.css"],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css", "node_modules/bootstrap/dist/css/bootstrap.min.css", "src/styles.css", "node_modules/ngx-toastr/toastr.css"],
             "scripts": []
           },
           "configurations": {
@@ -60,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cakeHouse:build"
+            "browserTarget": "walkingTreeProject:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cakeHouse:build:production"
+              "browserTarget": "walkingTreeProject:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cakeHouse:build"
+            "browserTarget": "walkingTreeProject:build"
           }
         },
         "test": {
@@ -82,7 +85,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css", "src/styles.css"],
             "scripts": []
           }
         },
@@ -101,16 +104,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cakeHouse:serve"
+            "devServerTarget": "walkingTreeProject:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cakeHouse:serve:production"
+              "devServerTarget": "walkingTreeProject:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "cakeHouse"
+  "defaultProject": "walkingTreeProject"
 }

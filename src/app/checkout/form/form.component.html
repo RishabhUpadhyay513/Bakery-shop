@@ -1,0 +1,82 @@
+<div class="login-section">
+  <h1>Fill Delivery Details</h1>
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        name="name"
+        type="text"
+        class="form-control"
+        id="name"
+        [(ngModel)]="user.name"
+        placeholder="Enter your full name"
+        autocomplete="disabled"
+      />
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input
+        name="address"
+        type="text"
+        class="form-control"
+        id="address"
+        [(ngModel)]="user.address"
+        placeholder="Enter your address"
+        autocomplete="disabled"
+      />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone No.</label>
+
+      <input
+        type="text"
+        name="phone"
+        [(ngModel)]="user.phone"
+        placeholder="Enter a 10-digit vaild phone number"
+        class="form-control"
+        id="phone"
+      />
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+
+      <input
+        type="text"
+        name="city"
+        [(ngModel)]="user.city"
+        class="form-control"
+        placeholder="Enter your city name"
+        id="city"
+      />
+    </div>
+    <div class="form-group">
+      <label for="pincode">Pincode</label>
+
+      <input
+        type="text"
+        name="pincode"
+        [(ngModel)]="user.pincode"
+        class="form-control"
+        placeholder="Enter your area pincode"
+        id="pincode"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="totalPrice">Total Price</label>
+
+      <input
+        type="text"
+        name="totalPrice"
+        [(ngModel)]="user.price"
+        class="form-control"
+        id="totalPrice"
+        disabled
+      />
+    </div>
+
+    <button type="submit" (click)="placeOrder()" class="btn btn-primary">
+      PlaceOrder
+    </button>
+  </form>
+</div>

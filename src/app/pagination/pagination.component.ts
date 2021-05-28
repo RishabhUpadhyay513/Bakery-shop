@@ -1,52 +1,50 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminService } from '../admin.service';
-import { UserListService } from '../user-list.service';
+import { AdminService } from '../services/admin.service';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css'],
 })
-export class PaginationComponent implements OnInit {
-  noOfpages: any;
-  paginationArr: any;
-  @Input() cakesArr: any = [];
-  @Input() cakeList: any = [];
-  @Input() adminUser: any = false;
+export class PaginationComponent {
+  // to store the data about page
   start: any;
   end: any;
+  noOfpages: any;
   resultPerPage: any = 12;
+  // To take the array of cakes
+  @Input() cakesArr: any = [];
+
   constructor(
-    public cs: UserListService,
+    public cs: CommonService,
     private admin: AdminService,
     private router: Router
-  ) {
-    this.pagination();
-  }
-  showPage(page: any) {
+  ) {}
+
+  // method to change current page value
+  openPage(page: any) {
     this.cs.currentp = page;
   }
+
+  // funtion the genrate data for each page
   pagination() {
+    // find total number of pages
     this.noOfpages = Math.ceil(this.cakesArr.length / this.resultPerPage);
+    // starting index of the cake array
     this.start = (this.cs.currentp - 1) * this.resultPerPage;
+    // ending index of the cake array
     this.end = this.cs.currentp * this.resultPerPage;
-    // this.paginationArr = Array(this.noOfpages);
-    // this.paginationArr = Array.from(this.paginationArr, (e, i) => i + 1);
-    if (!this.adminUser) {
-      this.cs.cakeSearch = [...this.cakesArr].slice(this.start, this.end);
-      return;
-    }
-    this.admin.cakeSearch = this.cakesArr.slice(this.start, this.end);
+    // display array
+    this.cs.cakeSearch = [...this.cakesArr].slice(this.start, this.end);
+    return;
   }
 
   ngDoCheck() {
-    // this.pagination();
+    // pagination method call whenever any changes happens
     setTimeout(() => {
       this.pagination();
     }, 10);
-  }
-  ngOnInit(): void {
-    // this.pagination();
   }
 }

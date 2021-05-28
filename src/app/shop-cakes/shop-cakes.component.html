@@ -1,0 +1,66 @@
+<!-- Cake list div to render cake list -->
+<div class="cake-list">
+  <!-- sort dropdown to sort according to price -->
+  <div *ngFor="let cake of cs.cakeSearch" class="price-filter">
+    <div class="dropdown">
+      <a
+        class="btn btn-secondary dropdown-toggle"
+        href="#"
+        role="button"
+        id="dropdownMenuLink"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fas fa-funnel-dollar"></i>Sort
+      </a>
+
+      <!-- dropdown menu -->
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li>
+          <a class="dropdown-item" (click)="filter('lth')"
+            ><span class="fas fa-sort-amount-down-alt"></span>Low to High</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="filter('htl')"
+            ><i class="fas fa-sort-amount-up-alt"></i>High to Low</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="filter('res')"
+            ><i class="fas fa-undo"></i>Reset</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- cake card component  -->
+  <app-cakecard *ngFor="let cake of cs.cakeSearch" [cake]="cake"></app-cakecard>
+
+  <!-- when cake search array is empty -->
+  <div *ngIf="cs.cakeSearch?.length === 0" class="no-query">
+    <p>
+      <img src="assets/404.png" alt="no-found" /><br />
+      No Cake found.(404)!!
+    </p>
+  </div>
+
+  <!-- Added pagination component -->
+  <app-pagination
+    [cakesArr]="cs.cakeList"
+    class="w-100 m-2x"
+    *ngIf="cs.cakeList.length"
+  ></app-pagination>
+</div>
+
+<!-- Model to display loading message -->
+<div class="model" *ngIf="cs.loading">
+  <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <p>Please wait loading cakes..</p>
+</div>

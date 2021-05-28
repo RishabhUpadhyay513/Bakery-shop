@@ -266,6 +266,7 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
   .cake-data.small-screen {
     visibility: visible;

@@ -1,0 +1,89 @@
+<div class="cart flex">
+  <main class="cart-main flex">
+    <div class="cart-products flex">
+      <ul class="cart-products-list flex" *ngIf="loading">
+        <!-- Show the loading message -->
+        <p *ngIf="loading !== 'upldating'">
+          <img
+            class="loading"
+            src="https://i.stack.imgur.com/hzk6C.gif"
+            alt=""
+          />
+          Your Order Summary
+        </p>
+      </ul>
+      <!-- show the order summary -->
+      <ul class="cart-products-list flex" *ngIf="!loading && totalPrice">
+        <li class="products-header">
+          <p>Products</p>
+          <p>Price</p>
+          <p>Qty</p>
+          <p>Subtotal</p>
+        </li>
+        <li class="order-products" *ngFor="let item of cartItems">
+          <p class="item-title">
+            <img
+              [src]="item.image"
+              class="item-img click-effect"
+              alt=""
+              routerLink="/cakes/{{ item.cakeid }}"
+            />
+            <span
+              ><p class="click-effect" routerLink="/cakes/{{ item.cakeid }}">
+                {{ item.name }}
+              </p>
+              <p class="small-text">Weight: {{ item.weight }} kg</p>
+            </span>
+          </p>
+          <p>{{ item.price | currency: "INR" }}</p>
+          <p>
+            <input
+              type="number"
+              name="quantity"
+              [(ngModel)]="item.quantity"
+              disabled
+            />
+          </p>
+          <p>{{ item.quantity * item.price | currency: "INR" }}</p>
+        </li>
+        <li class="products-header"></li>
+        <li class="products-header total">
+          <p>
+            <i class="fas fa-truck"></i>
+            {{
+              deliveryCharge
+                ? " Delivery Charge: ₹" + deliveryCharge
+                : "Free Delivery"
+            }}
+          </p>
+          <p></p>
+          <p>Total :</p>
+          <p class="total">
+            <span class="delivery-charge">
+              {{ totalPrice | currency: "INR" }}</span
+            >
+            <span class="delivery-charge">
+              + {{ deliveryCharge | currency: "INR" }}</span
+            >
+
+            <span class="total-price">
+              {{
+                totalPrice
+                  ? totalPrice + deliveryCharge
+                  : (totalPrice | currency: "INR")
+              }}
+            </span>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <button
+    class="btn btn-primary"
+    *ngIf="!loading && totalPrice"
+    (click)="next()"
+  >
+    Confirm
+  </button>
+</div>

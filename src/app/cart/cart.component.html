@@ -15,7 +15,6 @@
   <main class="cart-main flex">
     <div class="cart-products flex">
       <ul class="cart-products-list flex" *ngIf="loading">
-        <!-- display loading message -->
         <p *ngIf="loading !== 'upldating'">
           <img
             class="loading"
@@ -24,7 +23,6 @@
           />
           Your Cart Items
         </p>
-        <!-- display uodating message -->
         <p *ngIf="loading === 'upldating'">
           <img
             class="loading"
@@ -34,7 +32,6 @@
           Your Cart Items
         </p>
       </ul>
-      <!-- display if cart is empty -->
       <ul class="cart-products-list flex" *ngIf="!loading && !totalPrice">
         <p class="cart-empty">
           <img
@@ -48,7 +45,6 @@
           >
         </p>
       </ul>
-      <!-- display cart items -->
       <ul class="cart-products-list flex" *ngIf="!loading && totalPrice">
         <li class="products-header">
           <p>Products</p>
@@ -73,12 +69,7 @@
           </p>
           <p>{{ item.price | currency: "INR" }}</p>
           <p>
-            <input
-              type="number"
-              [(ngModel)]="item.quantity"
-              (change)="qtyValidation($event)"
-              disabled
-            /><i
+            <input type="number" [(ngModel)]="item.quantity" disabled /><i
               (click)="remove(item.cakeid)"
               class="fas fa-trash click-effect"
             ></i>
@@ -117,4 +108,30 @@
       </ul>
     </div>
   </main>
+</div>
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="next">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

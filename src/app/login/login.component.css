@@ -1,26 +1,27 @@
 .login-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px;
-  flex-direction: column;
-  background: var(--form-bg-color);
-  color: var(--form-color);
-  padding: 50px;
-  border: 0.5px solid black;
-}
-.login-section form {
-  width: 70%;
-}
-.login-section form input {
-  margin: 20px 0;
-}
-.login-section form button {
-  margin: 10px;
-}
-@media screen and (max-width: 800px) {
-  .login-section {
-    margin: 20px 2px;
-    padding: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    flex-direction: column;
+    background: var(--form-bg-color);
+    color: var(--form-color);
+    padding: 50px;
+    border: 0.5px solid black;
   }
-}
+  .login-section form {
+    width: 70%;
+  }
+  .login-section form input {
+    margin: 20px 0;
+  }
+  .login-section form button {
+    margin: 10px;
+  }
+  @media screen and (max-width: 800px) {
+    .login-section {
+      margin: 20px 2px;
+      padding: 2vw;
+    }
+  }
+  

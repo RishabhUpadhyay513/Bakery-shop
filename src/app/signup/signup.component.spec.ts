@@ -1,4 +1,8 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ToastrModule } from 'ngx-toastr';
+import { AppRoutingModule } from '../app-routing.module';
 
 import { SignupComponent } from './signup.component';
 
@@ -8,9 +12,18 @@ describe('SignupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignupComponent ]
-    })
-    .compileComponents();
+      imports: [
+        AppRoutingModule,
+        HttpClientModule,
+        ToastrModule.forRoot({
+          timeOut: 3000,
+          positionClass: 'toast-top-left',
+          preventDuplicates: true,
+          enableHtml: true,
+        }),
+      ],
+      declarations: [SignupComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

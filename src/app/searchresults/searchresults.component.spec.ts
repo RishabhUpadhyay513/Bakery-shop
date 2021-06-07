@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ToastrModule } from 'ngx-toastr';
+import { AppRoutingModule } from '../app-routing.module';
 
 import { SearchresultsComponent } from './searchresults.component';
 
@@ -8,9 +11,18 @@ describe('SearchresultsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchresultsComponent ]
-    })
-    .compileComponents();
+      imports: [
+        AppRoutingModule,
+        HttpClientModule,
+        ToastrModule.forRoot({
+          timeOut: 3000,
+          positionClass: 'toast-top-left',
+          preventDuplicates: true,
+          enableHtml: true,
+        }),
+      ],
+      declarations: [SearchresultsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

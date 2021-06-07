@@ -14,7 +14,7 @@ import {
   SPINNER,
 } from 'ngx-ui-loader';
 import { ToastrModule } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselComponent } from './carousel/carousel.component';
 import { HomeComponent } from './home/home.component';
 import { CakecardComponent } from './cakecard/cakecard.component';
@@ -73,6 +73,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AppRoutingModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule ,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
